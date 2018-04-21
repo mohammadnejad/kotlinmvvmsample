@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.app.Application
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
+import android.support.annotation.VisibleForTesting
 import com.ms.kotlinmvvmsample.data.source.WeatherRepository
 import com.ms.kotlinmvvmsample.data.source.local.WeatherLocalDataSource
 import com.ms.kotlinmvvmsample.data.source.remote.WeatherRemoteDataSource
@@ -37,5 +38,10 @@ class ViewModelFactory private constructor(
                             WeatherRepository.getInstance(WeatherLocalDataSource(), WeatherRemoteDataSource()))
                             .also { INSTANCE = it }
                 }
+
+        @VisibleForTesting
+        fun destroyInstacne() {
+            INSTANCE = null
+        }
     }
 }
