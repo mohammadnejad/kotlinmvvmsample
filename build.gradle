@@ -8,11 +8,14 @@ ext {
 
     // App dependencies
     supportLibraryVersion = '27.1.1'
-    constraintLayoutVersion = '1.0.2'
+    constraintLayoutVersion = '1.1.0'
     roomVersion = '1.0.0'
     jUnitVersion = '4.12'
     runnerVersion = '1.0.1'
     espressoVersion = '3.0.1'
+    retrofitVersion = '2.4.0'
+    gsonVersion = '2.8.2'
+    OKHttpVersion = '3.10.0'
 
     // Architecture Components dependency
     archLifecycleVersion = '1.1.1'

@@ -1,5 +1,7 @@
 package com.ms.kotlinmvvmsample.data.source
 
+import com.ms.kotlinmvvmsample.data.Weather
+
 /**
  *
  * @author Majid Mohammadnejad
@@ -10,6 +12,10 @@ class WeatherRepository(
         val weatherRemoteDataSource: WeatherDataSource,
         val weatherLocalDataSource: WeatherDataSource
 ) : WeatherDataSource {
+
+    override fun getCurrentWeatherByCityName(cityName: String): Weather? {
+        return weatherRemoteDataSource.getCurrentWeatherByCityName(cityName)
+    }
 
     companion object {
         private var INSTANCE: WeatherRepository? = null

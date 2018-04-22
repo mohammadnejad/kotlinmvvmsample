@@ -8,6 +8,7 @@ import android.support.annotation.VisibleForTesting
 import com.ms.kotlinmvvmsample.data.source.WeatherRepository
 import com.ms.kotlinmvvmsample.data.source.local.WeatherLocalDataSource
 import com.ms.kotlinmvvmsample.data.source.remote.WeatherRemoteDataSource
+import com.ms.kotlinmvvmsample.home.HomeViewModel
 
 /**
  *
@@ -23,6 +24,10 @@ class ViewModelFactory private constructor(
     override fun <T : ViewModel> create(modelClass: Class<T>) =
             with(modelClass) {
                 when {
+                    isAssignableFrom(HomeViewModel::class.java) ->
+                        HomeViewModel(application, weatherRepository)
+                    else ->
+                        throw IllegalArgumentException("Unknown ViewModel class ${modelClass.name}")
                 }
             } as T
 
@@ -34,9 +39,10 @@ class ViewModelFactory private constructor(
 
         fun getInstance(application: Application) =
                 INSTANCE ?: synchronized(ViewModelFactory::class.java) {
-                    INSTANCE ?: ViewModelFactory(application,
-                            WeatherRepository.getInstance(WeatherLocalDataSource(), WeatherRemoteDataSource()))
-                            .also { INSTANCE = it }
+                    INSTANCE ?: ViewModelFactory(
+                            application,
+                            WeatherRepository.getInstance(WeatherLocalDataSource(), WeatherRemoteDataSource())
+                    ).also { INSTANCE = it }
                 }
 
         @VisibleForTesting

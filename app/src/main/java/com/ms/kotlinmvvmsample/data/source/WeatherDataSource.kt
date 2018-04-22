@@ -1,5 +1,7 @@
 package com.ms.kotlinmvvmsample.data.source
 
+import com.ms.kotlinmvvmsample.data.Weather
+
 /**
  *
  * @author Majid Mohammadnejad
@@ -7,5 +9,7 @@ package com.ms.kotlinmvvmsample.data.source
  * @since 4/16/18
  */
 interface WeatherDataSource {
+
+    fun getCurrentWeatherByCityName(cityName: String): Weather?
 
 }

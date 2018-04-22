@@ -1,5 +1,7 @@
 package com.ms.kotlinmvvmsample.data.source.remote
 
+import com.ms.kotlinmvvmsample.data.Weather
+import com.ms.kotlinmvvmsample.data.apibase.ApiClient
 import com.ms.kotlinmvvmsample.data.source.WeatherDataSource
 
 /**
@@ -9,4 +11,11 @@ import com.ms.kotlinmvvmsample.data.source.WeatherDataSource
  * @since 4/16/18
  */
 class WeatherRemoteDataSource : WeatherDataSource {
+    private val weatherApi: WeatherApi by lazy {
+        ApiClient.getRetrofitInstance().create(WeatherApi::class.java)
+    }
+
+    override fun getCurrentWeatherByCityName(cityName: String): Weather? =
+            weatherApi.getCurrentWeatherByCityName(cityName).execute().body()
+
 }
