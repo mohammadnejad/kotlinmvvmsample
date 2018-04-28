@@ -31,7 +31,11 @@ class HomeViewModel(
         weatherRepository.getCurrentWeatherByCityName(cityName)
                 ?.observeOn(Schedulers.io())
                 ?.subscribeOn(AndroidSchedulers.mainThread())
-                ?.subscribe(this::currentWeatherLoadedSuccess)
+                ?.subscribe({
+                    currentWeatherLoadedSuccess(it)
+                }, {
+                    Log.e("", "")
+                })
     }
 
     private fun currentWeatherLoadedSuccess(weather: Weather) {
