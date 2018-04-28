@@ -19,7 +19,7 @@ ext {
 
     // Architecture Components dependency
     archLifecycleVersion = '1.1.1'
-    pagingVersion = '1.0.0-beta1'
+    pagingVersion = '1.0.0-rc1'
 }
 
 buildscript {

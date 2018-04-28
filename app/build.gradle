@@ -84,6 +84,7 @@ dependencies {
     implementation "com.squareup.retrofit2:converter-gson:$rootProject.ext.retrofitVersion"
     implementation "com.google.code.gson:gson:$rootProject.ext.gsonVersion"
     implementation "com.squareup.okhttp3:okhttp:$rootProject.ext.OKHttpVersion"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$rootProject.ext.retrofitVersion"
 
     // Test helpers for LiveData
     testImplementation "android.arch.core:core-testing:$rootProject.ext.archLifecycleVersion"

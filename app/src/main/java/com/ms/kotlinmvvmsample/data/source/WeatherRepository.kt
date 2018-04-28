@@ -1,6 +1,7 @@
 package com.ms.kotlinmvvmsample.data.source
 
 import com.ms.kotlinmvvmsample.data.Weather
+import io.reactivex.Observable
 
 /**
  *
@@ -9,11 +10,11 @@ import com.ms.kotlinmvvmsample.data.Weather
  * @since 4/16/18
  */
 class WeatherRepository(
-        val weatherRemoteDataSource: WeatherDataSource,
-        val weatherLocalDataSource: WeatherDataSource
+        private val weatherRemoteDataSource: WeatherDataSource,
+        private val weatherLocalDataSource: WeatherDataSource
 ) : WeatherDataSource {
 
-    override fun getCurrentWeatherByCityName(cityName: String): Weather? {
+    override fun getCurrentWeatherByCityName(cityName: String): Observable<Weather>? {
         return weatherRemoteDataSource.getCurrentWeatherByCityName(cityName)
     }
 
