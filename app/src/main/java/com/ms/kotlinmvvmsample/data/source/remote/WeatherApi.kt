@@ -2,6 +2,7 @@ package com.ms.kotlinmvvmsample.data.source.remote
 
 import com.ms.kotlinmvvmsample.data.Weather
 import io.reactivex.Observable
+import io.reactivex.Single
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -14,5 +15,5 @@ import retrofit2.http.Path
  */
 interface WeatherApi {
     @GET("forecast?q={city}")
-    fun getCurrentWeatherByCityName(@Path("city") cityName: String): Observable<Weather>
+    fun getCurrentWeatherByCityName(@Path("city") cityName: String): Single<Weather>
 }

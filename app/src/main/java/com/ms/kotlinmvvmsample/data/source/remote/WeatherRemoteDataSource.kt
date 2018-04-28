@@ -4,6 +4,7 @@ import com.ms.kotlinmvvmsample.data.Weather
 import com.ms.kotlinmvvmsample.data.apibase.ApiClient
 import com.ms.kotlinmvvmsample.data.source.WeatherDataSource
 import io.reactivex.Observable
+import io.reactivex.Single
 
 /**
  *
@@ -16,6 +17,6 @@ class WeatherRemoteDataSource : WeatherDataSource {
         ApiClient.getRetrofitInstance().create(WeatherApi::class.java)
     }
 
-    override fun getCurrentWeatherByCityName(cityName: String): Observable<Weather>? =
+    override fun getCurrentWeatherByCityName(cityName: String): Single<Weather>? =
             weatherApi.getCurrentWeatherByCityName(cityName)
 }

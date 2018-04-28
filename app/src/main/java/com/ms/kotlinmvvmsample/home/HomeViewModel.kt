@@ -5,6 +5,8 @@ import android.arch.lifecycle.AndroidViewModel
 import android.util.Log
 import com.ms.kotlinmvvmsample.data.Weather
 import com.ms.kotlinmvvmsample.data.source.WeatherRepository
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 
 /**
  *
@@ -27,6 +29,8 @@ class HomeViewModel(
 
     fun loadCurrentWeather(cityName: String) {
         weatherRepository.getCurrentWeatherByCityName(cityName)
+                ?.observeOn(Schedulers.io())
+                ?.subscribeOn(AndroidSchedulers.mainThread())
                 ?.subscribe(this::currentWeatherLoadedSuccess)
     }
 

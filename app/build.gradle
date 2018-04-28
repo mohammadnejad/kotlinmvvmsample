@@ -86,6 +86,9 @@ dependencies {
     implementation "com.squareup.okhttp3:okhttp:$rootProject.ext.OKHttpVersion"
     implementation "com.squareup.retrofit2:adapter-rxjava2:$rootProject.ext.retrofitVersion"
 
+    // RX
+    implementation "io.reactivex.rxjava2:rxandroid:$rootProject.ext.rxAndroidVersion"
+
     // Test helpers for LiveData
     testImplementation "android.arch.core:core-testing:$rootProject.ext.archLifecycleVersion"
 

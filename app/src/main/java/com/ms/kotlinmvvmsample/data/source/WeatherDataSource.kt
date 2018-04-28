@@ -1,7 +1,7 @@
 package com.ms.kotlinmvvmsample.data.source
 
 import com.ms.kotlinmvvmsample.data.Weather
-import io.reactivex.Observable
+import io.reactivex.Single
 
 /**
  *
@@ -11,6 +11,6 @@ import io.reactivex.Observable
  */
 interface WeatherDataSource {
 
-    fun getCurrentWeatherByCityName(cityName: String): Observable<Weather>?
+    fun getCurrentWeatherByCityName(cityName: String): Single<Weather>?
 
 }

@@ -16,6 +16,7 @@ ext {
     retrofitVersion = '2.4.0'
     gsonVersion = '2.8.2'
     OKHttpVersion = '3.10.0'
+    rxAndroidVersion = '2.0.2'
 
     // Architecture Components dependency
     archLifecycleVersion = '1.1.1'
