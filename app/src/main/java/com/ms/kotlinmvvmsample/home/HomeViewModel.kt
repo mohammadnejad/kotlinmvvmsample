@@ -29,8 +29,8 @@ class HomeViewModel(
 
     fun loadCurrentWeather(cityName: String) {
         weatherRepository.getCurrentWeatherByCityName(cityName)
-                ?.observeOn(Schedulers.io())
-                ?.subscribeOn(AndroidSchedulers.mainThread())
+                ?.subscribeOn(Schedulers.io())
+                ?.observeOn(AndroidSchedulers.mainThread())
                 ?.subscribe({
                     currentWeatherLoadedSuccess(it)
                 }, {
