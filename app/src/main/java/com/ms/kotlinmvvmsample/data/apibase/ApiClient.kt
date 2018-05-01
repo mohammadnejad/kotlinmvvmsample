@@ -18,6 +18,7 @@ class ApiClient {
 
     companion object {
         private const val API_BASE_URL = "http://samples.openweathermap.org/data/2.5/"
+        const val API_KEY = "8d95c13c65eb2a239ea2dc997ca9d3e0"
         private const val CONNECTION_TIME_OUT = 60L
         private const val READ_TIME_OUT = 60L
         private const val WRITE_TIME_OUT = 60L
@@ -36,11 +37,9 @@ class ApiClient {
         private fun getOkHttpClient(): OkHttpClient =
                 OkHttpClient().newBuilder().addInterceptor {
                     val originalRequest: Request = it.request()
-                    val builder = originalRequest.newBuilder().header(
-                            "", ""
-                    )
-                    val newRequest = builder.build()
-                    it.proceed(newRequest)
+//                    val builder = originalRequest.newBuilder().header()
+//                    val newRequest = builder.build()
+                    it.proceed(originalRequest)
                 }.connectTimeout(CONNECTION_TIME_OUT, TimeUnit.SECONDS)
                         .writeTimeout(WRITE_TIME_OUT, TimeUnit.SECONDS)
                         .readTimeout(READ_TIME_OUT, TimeUnit.SECONDS)

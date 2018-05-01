@@ -41,7 +41,7 @@ class ViewModelFactory private constructor(
                 INSTANCE ?: synchronized(ViewModelFactory::class.java) {
                     INSTANCE ?: ViewModelFactory(
                             application,
-                            WeatherRepository.getInstance(WeatherLocalDataSource(), WeatherRemoteDataSource())
+                            WeatherRepository.getInstance(WeatherRemoteDataSource(), WeatherLocalDataSource())
                     ).also { INSTANCE = it }
                 }
 

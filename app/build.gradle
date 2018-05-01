@@ -88,6 +88,7 @@ dependencies {
 
     // RX
     implementation "io.reactivex.rxjava2:rxandroid:$rootProject.ext.rxAndroidVersion"
+//    implementation "io.reactivex:rxkotlin:$rootProject.ext.rxAndroidVersio"
 
     // Test helpers for LiveData
     testImplementation "android.arch.core:core-testing:$rootProject.ext.archLifecycleVersion"

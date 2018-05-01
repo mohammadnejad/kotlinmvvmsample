@@ -1,6 +1,6 @@
 package com.ms.kotlinmvvmsample.data.source
 
-import com.ms.kotlinmvvmsample.data.Weather
+import com.ms.kotlinmvvmsample.data.WeatherResponse
 import io.reactivex.Single
 
 /**
@@ -11,6 +11,6 @@ import io.reactivex.Single
  */
 interface WeatherDataSource {
 
-    fun getCurrentWeatherByCityName(cityName: String): Single<Weather>?
+    fun getCurrentWeatherByCityName(cityName: String): Single<WeatherResponse>?
 
 }

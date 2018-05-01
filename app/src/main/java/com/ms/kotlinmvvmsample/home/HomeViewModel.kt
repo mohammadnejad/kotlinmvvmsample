@@ -4,6 +4,7 @@ import android.app.Application
 import android.arch.lifecycle.AndroidViewModel
 import android.util.Log
 import com.ms.kotlinmvvmsample.data.Weather
+import com.ms.kotlinmvvmsample.data.WeatherResponse
 import com.ms.kotlinmvvmsample.data.source.WeatherRepository
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -31,15 +32,18 @@ class HomeViewModel(
         weatherRepository.getCurrentWeatherByCityName(cityName)
                 ?.subscribeOn(Schedulers.io())
                 ?.observeOn(AndroidSchedulers.mainThread())
-                ?.subscribe({
-                    currentWeatherLoadedSuccess(it)
-                }, {
-                    Log.e("", "")
-                })
+                ?.subscribe(
+                        {
+                            currentWeatherLoadedSuccess(it)
+                        },
+                        {
+                            Log.e(TAG, it.message)
+                        }
+                )
     }
 
-    private fun currentWeatherLoadedSuccess(weather: Weather) {
-        Log.i(Companion.TAG, "current weather load success")
+    private fun currentWeatherLoadedSuccess(weather: WeatherResponse?) {
+        Log.i(Companion.TAG, "current weather load success" + weather?.toString())
     }
 
 }

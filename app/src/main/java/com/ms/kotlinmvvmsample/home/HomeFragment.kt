@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.ms.kotlinmvvmsample.R
 import com.ms.kotlinmvvmsample.extension.obtainViewModel
+import kotlinx.android.synthetic.main.fragment_home.*
 
 class HomeFragment : Fragment() {
 
@@ -36,6 +37,14 @@ class HomeFragment : Fragment() {
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_home, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        click.setOnClickListener {
+            homeViewModel.loadCurrentWeather("Tehran")
+        }
     }
 
     private fun obtainViewModel(): HomeViewModel = obtainViewModel(HomeViewModel::class.java)

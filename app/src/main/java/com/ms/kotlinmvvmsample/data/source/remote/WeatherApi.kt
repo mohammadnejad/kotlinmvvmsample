@@ -1,11 +1,9 @@
 package com.ms.kotlinmvvmsample.data.source.remote
 
-import com.ms.kotlinmvvmsample.data.Weather
-import io.reactivex.Observable
+import com.ms.kotlinmvvmsample.data.WeatherResponse
 import io.reactivex.Single
-import retrofit2.Call
 import retrofit2.http.GET
-import retrofit2.http.Path
+import retrofit2.http.Query
 
 /**
  *
@@ -14,6 +12,9 @@ import retrofit2.http.Path
  * @since 4/22/18
  */
 interface WeatherApi {
-    @GET("forecast?q={city}")
-    fun getCurrentWeatherByCityName(@Path("city") cityName: String): Single<Weather>
+    @GET("weather")
+    fun getCurrentWeatherByCityName(
+            @Query("q") cityName: String,
+            @Query("appid") key: String
+    ): Single<WeatherResponse>
 }
