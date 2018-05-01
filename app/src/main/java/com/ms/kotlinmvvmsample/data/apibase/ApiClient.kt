@@ -1,6 +1,7 @@
 package com.ms.kotlinmvvmsample.data.apibase
 
 import com.google.gson.Gson
+import com.ms.kotlinmvvmsample.BuildConfig
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import retrofit2.Retrofit
@@ -17,8 +18,8 @@ import java.util.concurrent.TimeUnit
 class ApiClient {
 
     companion object {
-        private const val API_BASE_URL = "http://samples.openweathermap.org/data/2.5/"
-        const val API_KEY = "8d95c13c65eb2a239ea2dc997ca9d3e0"
+        private const val API_BASE_URL = BuildConfig.API_URL
+        const val API_KEY = BuildConfig.API_KEY
         private const val CONNECTION_TIME_OUT = 60L
         private const val READ_TIME_OUT = 60L
         private const val WRITE_TIME_OUT = 60L

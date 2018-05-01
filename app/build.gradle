@@ -20,12 +20,18 @@ android {
             minifyEnabled false
             useProguard false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+            buildConfigField "String", "API_URL", "\"$rootProject.ext.debugApiUrl\""
+            buildConfigField "String", "API_KEY", "\"$rootProject.ext.debugApiKey\""
         }
 
         release {
             minifyEnabled false
             useProguard false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+            buildConfigField "String", "API_URL", "\"$rootProject.ext.releaseApiUrl\""
+            buildConfigField "String", "API_KEY", "\"$rootProject.ext.releaseApiKey\""
         }
     }
 
