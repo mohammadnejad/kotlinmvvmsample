@@ -3,10 +3,11 @@ package com.ms.kotlinmvvmsample.home
 import android.app.Application
 import android.arch.lifecycle.AndroidViewModel
 import android.util.Log
-import com.ms.kotlinmvvmsample.data.Weather
 import com.ms.kotlinmvvmsample.data.WeatherResponse
 import com.ms.kotlinmvvmsample.data.source.WeatherRepository
+import com.ms.kotlinmvvmsample.extension.toast
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.rxkotlin.subscribeBy
 import io.reactivex.schedulers.Schedulers
 
 /**
@@ -16,7 +17,7 @@ import io.reactivex.schedulers.Schedulers
  * @since 4/21/18
  */
 class HomeViewModel(
-        context: Application,
+        private val context: Application,
         private val weatherRepository: WeatherRepository
 ) : AndroidViewModel(context) {
 
@@ -32,12 +33,12 @@ class HomeViewModel(
         weatherRepository.getCurrentWeatherByCityName(cityName)
                 ?.subscribeOn(Schedulers.io())
                 ?.observeOn(AndroidSchedulers.mainThread())
-                ?.subscribe(
-                        {
+                ?.subscribeBy(
+                        onSuccess = {
                             currentWeatherLoadedSuccess(it)
                         },
-                        {
-                            Log.e(TAG, it.message)
+                        onError = {
+                            context.toast(it.message)
                         }
                 )
     }

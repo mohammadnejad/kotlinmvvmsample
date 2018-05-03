@@ -20,7 +20,6 @@ ext {
     rxJavaVersion = '2.1.13'
     rxKotlinVersion = '2.2.0'
 
-
     // Architecture Components dependency
     archLifecycleVersion = '1.1.1'
     pagingVersion = '1.0.0-rc1'
@@ -35,8 +34,8 @@ ext {
 }
 
 buildscript {
-    ext.kotlinVersion = '1.2.21'
-    ext.gradlePluginVersion = '3.1.1'
+    ext.kotlinVersion = '1.2.30'
+    ext.gradlePluginVersion = '3.1.2'
 
     repositories {
         google()
