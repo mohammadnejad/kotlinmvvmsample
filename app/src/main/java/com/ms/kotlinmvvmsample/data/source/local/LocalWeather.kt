@@ -1,5 +1,6 @@
 package com.ms.kotlinmvvmsample.data.source.local
 
+import android.arch.persistence.room.Embedded
 import android.arch.persistence.room.Entity
 import android.arch.persistence.room.PrimaryKey
 
@@ -15,26 +16,36 @@ data class LocalWeather(
         @PrimaryKey
         val id: Long,
 
-        val coord: Coord?,
-        val weather: List<Weather>?,
-        val base: String?,
-        val main: Main?,
-        val visibility: Long,
-        val wind: Wind?,
-        val cloud: Cloud?,
-        val dt: Long,
-        val sys: Sys,
         val name: String?,
-        val code: Int
+        val code: Int,
+        val dt: Long,
+        val base: String?,
+        val visibility: Long,
+
+        @Embedded
+        val coord: Coord?,
+
+        @Embedded
+        val weather: List<Weather>?,
+
+        @Embedded
+        val main: Main?,
+
+        @Embedded
+        val wind: Wind?,
+
+        @Embedded
+        val cloud: Cloud?,
+
+        @Embedded
+        val sys: Sys
 )
 
-@Entity
 data class Coord(
         val lon: Float,
         val lat: Float
 )
 
-@Entity
 data class Weather(
         val id: Int,
         val main: String?,
@@ -42,7 +53,6 @@ data class Weather(
         val icon: String?
 )
 
-@Entity
 data class Main(
         val temp: Float,
         val pressure: Int,
@@ -51,18 +61,15 @@ data class Main(
         val tempMax: Float
 )
 
-@Entity
 data class Wind(
         val speed: Float,
         val deg: Float
 )
 
-@Entity
 data class Cloud(
         val all: Int
 )
 
-@Entity
 data class Sys(
         val type: Int,
         val id: Int,
