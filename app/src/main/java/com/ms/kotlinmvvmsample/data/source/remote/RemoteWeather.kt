@@ -1,4 +1,4 @@
-package com.ms.kotlinmvvmsample.data
+package com.ms.kotlinmvvmsample.data.source.remote
 
 import com.google.gson.annotations.SerializedName
 
@@ -8,7 +8,7 @@ import com.google.gson.annotations.SerializedName
  * @version 1.0
  * @since 4/16/18
  */
-data class WeatherResponse(
+data class RemoteWeather(
         @SerializedName("coord") val coord: Coord?,
         @SerializedName("weather") val weather: List<Weather>?,
         @SerializedName("base") val base: String?,

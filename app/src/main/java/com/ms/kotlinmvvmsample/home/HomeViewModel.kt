@@ -3,7 +3,7 @@ package com.ms.kotlinmvvmsample.home
 import android.app.Application
 import android.arch.lifecycle.AndroidViewModel
 import android.util.Log
-import com.ms.kotlinmvvmsample.data.WeatherResponse
+import com.ms.kotlinmvvmsample.data.source.remote.RemoteWeather
 import com.ms.kotlinmvvmsample.data.source.WeatherRepository
 import com.ms.kotlinmvvmsample.extension.toast
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -43,7 +43,7 @@ class HomeViewModel(
                 )
     }
 
-    private fun currentWeatherLoadedSuccess(weather: WeatherResponse?) {
+    private fun currentWeatherLoadedSuccess(weather: RemoteWeather?) {
         Log.i(Companion.TAG, "current weather load success" + weather?.toString())
     }
 

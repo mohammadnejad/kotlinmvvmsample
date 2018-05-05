@@ -1,6 +1,5 @@
 package com.ms.kotlinmvvmsample.data.source.remote
 
-import com.ms.kotlinmvvmsample.data.WeatherResponse
 import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -16,5 +15,5 @@ interface WeatherApi {
     fun getCurrentWeatherByCityName(
             @Query("q") cityName: String,
             @Query("appid") key: String
-    ): Single<WeatherResponse>
+    ): Single<RemoteWeather>
 }

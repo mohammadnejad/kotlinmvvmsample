@@ -1,7 +1,6 @@
 package com.ms.kotlinmvvmsample.data.source
 
-import com.ms.kotlinmvvmsample.data.Weather
-import com.ms.kotlinmvvmsample.data.WeatherResponse
+import com.ms.kotlinmvvmsample.data.source.remote.RemoteWeather
 import io.reactivex.Single
 
 /**
@@ -15,7 +14,7 @@ class WeatherRepository(
         private val weatherLocalDataSource: WeatherDataSource
 ) : WeatherDataSource {
 
-    override fun getCurrentWeatherByCityName(cityName: String): Single<WeatherResponse>? {
+    override fun getCurrentWeatherByCityName(cityName: String): Single<RemoteWeather>? {
         return weatherRemoteDataSource.getCurrentWeatherByCityName(cityName)
     }
 
