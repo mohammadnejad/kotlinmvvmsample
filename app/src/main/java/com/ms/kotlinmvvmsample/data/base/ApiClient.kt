@@ -1,4 +1,4 @@
-package com.ms.kotlinmvvmsample.data.apibase
+package com.ms.kotlinmvvmsample.data.base
 
 import com.google.gson.Gson
 import com.ms.kotlinmvvmsample.BuildConfig

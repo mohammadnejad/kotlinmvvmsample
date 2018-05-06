@@ -1,6 +1,6 @@
 package com.ms.kotlinmvvmsample.data.source.remote
 
-import com.ms.kotlinmvvmsample.data.apibase.ApiClient
+import com.ms.kotlinmvvmsample.data.base.ApiClient
 import com.ms.kotlinmvvmsample.data.source.WeatherDataSource
 import io.reactivex.Single
 

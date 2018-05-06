@@ -80,6 +80,7 @@ dependencies {
 
     // Room (use 1.1.0-beta1 for latest beta)
     implementation "android.arch.persistence.room:runtime:$rootProject.ext.roomVersion"
+    implementation "android.arch.persistence.room:rxjava2:$rootProject.ext.archLifecycleVersion"
     kapt "android.arch.persistence.room:compiler:$rootProject.ext.roomVersion"
 
     // Paging
