@@ -1,6 +1,6 @@
 package com.ms.kotlinmvvmsample.data.source
 
-import com.ms.kotlinmvvmsample.data.source.remote.RemoteWeather
+import com.ms.kotlinmvvmsample.data.source.local.LocalWeather
 import io.reactivex.Single
 
 /**
@@ -11,6 +11,6 @@ import io.reactivex.Single
  */
 interface WeatherDataSource {
 
-    fun getCurrentWeatherByCityName(cityName: String): Single<RemoteWeather>?
+    fun getCurrentWeatherByCityName(cityName: String): Single<LocalWeather>?
 
 }

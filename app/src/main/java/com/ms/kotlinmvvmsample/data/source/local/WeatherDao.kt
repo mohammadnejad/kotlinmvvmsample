@@ -4,6 +4,7 @@ import android.arch.persistence.room.Dao
 import android.arch.persistence.room.Insert
 import android.arch.persistence.room.OnConflictStrategy.REPLACE
 import android.arch.persistence.room.Query
+import io.reactivex.Single
 
 /**
  *
@@ -18,6 +19,6 @@ interface WeatherDao {
     @Insert(onConflict = REPLACE)
     fun insert(weather: LocalWeather)
 
-    @Query("SELECT * from LocalWeather")
-    fun getAll(): List<LocalWeather>
+    @Query("select * from LocalWeather where name = :cityName")
+    fun getCurrentWeatherByCityName(cityName: String): Single<LocalWeather>
 }

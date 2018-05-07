@@ -1,5 +1,6 @@
 package com.ms.kotlinmvvmsample.data.source.local
 
+import android.arch.persistence.room.ColumnInfo
 import android.arch.persistence.room.Embedded
 import android.arch.persistence.room.Entity
 import android.arch.persistence.room.PrimaryKey
@@ -13,10 +14,12 @@ import android.arch.persistence.room.PrimaryKey
 
 @Entity
 data class LocalWeather(
-        @PrimaryKey
+        @ColumnInfo(name = "weatherId")
         val id: Long,
 
-        val name: String?,
+        @PrimaryKey
+        val name: String,
+
         val code: Int,
         val dt: Long,
         val base: String?,
@@ -25,8 +28,8 @@ data class LocalWeather(
         @Embedded
         val coord: Coord?,
 
-        @Embedded
-        val weather: List<Weather>?,
+//        @Embedded
+//        val weather: List<Weather>?,
 
         @Embedded
         val main: Main?,

@@ -5,6 +5,7 @@ import android.app.Application
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
 import android.support.annotation.VisibleForTesting
+import com.ms.kotlinmvvmsample.data.base.WeatherDatabase
 import com.ms.kotlinmvvmsample.data.source.WeatherRepository
 import com.ms.kotlinmvvmsample.data.source.local.WeatherLocalDataSource
 import com.ms.kotlinmvvmsample.data.source.remote.WeatherRemoteDataSource
@@ -41,7 +42,8 @@ class ViewModelFactory private constructor(
                 INSTANCE ?: synchronized(ViewModelFactory::class.java) {
                     INSTANCE ?: ViewModelFactory(
                             application,
-                            WeatherRepository.getInstance(WeatherRemoteDataSource(), WeatherLocalDataSource())
+                            WeatherRepository.getInstance(WeatherRemoteDataSource(),
+                                    WeatherLocalDataSource(WeatherDatabase.getInstance(application)!!.weatherDao()))
                     ).also { INSTANCE = it }
                 }
 

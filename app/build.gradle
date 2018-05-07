@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
@@ -66,7 +67,7 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlinVersion"
+    implementation "com.android.support:support-v4:$rootProject.ext.supportLibraryVersion"
     implementation "com.android.support:appcompat-v7:$rootProject.ext.supportLibraryVersion"
     implementation "com.android.support:support-vector-drawable:$rootProject.ext.supportLibraryVersion"
     implementation "com.android.support:recyclerview-v7:$rootProject.ext.supportLibraryVersion"
@@ -75,12 +76,12 @@ dependencies {
 
     // ViewModel and LiveData
     implementation "android.arch.lifecycle:extensions:$rootProject.ext.archLifecycleVersion"
-    implementation 'com.android.support:support-v4:27.1.1'
+    implementation "android.arch.lifecycle:reactivestreams:$rootProject.ext.archLifecycleVersion"
     kapt "android.arch.lifecycle:compiler:$rootProject.ext.archLifecycleVersion"
 
     // Room (use 1.1.0-beta1 for latest beta)
     implementation "android.arch.persistence.room:runtime:$rootProject.ext.roomVersion"
-    implementation "android.arch.persistence.room:rxjava2:$rootProject.ext.archLifecycleVersion"
+    implementation "android.arch.persistence.room:rxjava2:$rootProject.ext.roomRxVersion"
     kapt "android.arch.persistence.room:compiler:$rootProject.ext.roomVersion"
 
     // Paging
