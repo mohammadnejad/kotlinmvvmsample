@@ -14,8 +14,18 @@ class WeatherRepository(
         private val weatherLocalDataSource: WeatherDataSource
 ) : WeatherDataSource {
 
+    override fun insertCurrentWeather(localWeather: LocalWeather) {
+        weatherLocalDataSource.insertCurrentWeather(localWeather)
+    }
+
     override fun getCurrentWeatherByCityName(cityName: String): Single<LocalWeather>? {
-        return weatherRemoteDataSource.getCurrentWeatherByCityName(cityName)
+        weatherRemoteDataSource.getCurrentWeatherByCityName(cityName)
+                ?.doAfterSuccess {
+                    insertCurrentWeather(it)
+                }
+
+        return weatherLocalDataSource.getCurrentWeatherByCityName(cityName)
+
     }
 
     companion object {

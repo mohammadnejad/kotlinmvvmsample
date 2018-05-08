@@ -13,8 +13,12 @@ import io.reactivex.Single
  * @since 4/16/18
  */
 class WeatherRemoteDataSource : WeatherDataSource {
+
     private val weatherApi: WeatherApi by lazy {
         ApiClient.getRetrofitInstance().create(WeatherApi::class.java)
+    }
+
+    override fun insertCurrentWeather(localWeather: LocalWeather) {
     }
 
     override fun getCurrentWeatherByCityName(cityName: String): Single<LocalWeather>? =

@@ -20,6 +20,7 @@ abstract class WeatherDatabase : RoomDatabase() {
     abstract fun weatherDao(): WeatherDao
 
     companion object {
+        private const val DATABASE_NAME = "weather.db"
         private var INSTANCE: WeatherDatabase? = null
 
         fun getInstance(context: Context): WeatherDatabase? {
@@ -28,7 +29,7 @@ abstract class WeatherDatabase : RoomDatabase() {
                     INSTANCE = Room.databaseBuilder(
                             context.applicationContext,
                             WeatherDatabase::class.java,
-                            "weather.db"
+                            DATABASE_NAME
                     ).build()
                 }
             }
