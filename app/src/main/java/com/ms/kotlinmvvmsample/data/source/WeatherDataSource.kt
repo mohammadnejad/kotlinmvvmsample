@@ -15,4 +15,6 @@ interface WeatherDataSource {
 
     fun insertCurrentWeather(localWeather: LocalWeather)
 
+    fun getAll(): Single<List<LocalWeather>>?
+
 }

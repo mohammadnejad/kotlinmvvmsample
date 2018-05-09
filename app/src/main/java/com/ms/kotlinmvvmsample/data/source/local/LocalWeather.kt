@@ -14,10 +14,12 @@ import android.arch.persistence.room.PrimaryKey
 
 @Entity
 data class LocalWeather(
+        @PrimaryKey
+        val primaryId: String,
+
         @ColumnInfo(name = "weatherId")
         val id: Long,
 
-        @PrimaryKey
         val name: String,
 
         val code: Int,

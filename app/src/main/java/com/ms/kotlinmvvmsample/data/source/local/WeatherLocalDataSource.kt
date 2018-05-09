@@ -17,5 +17,12 @@ class WeatherLocalDataSource(private val weatherDao: WeatherDao) : WeatherDataSo
 
     override fun getCurrentWeatherByCityName(cityName: String): Single<LocalWeather>? {
         return weatherDao.getCurrentWeatherByCityName(cityName)
+                .map {
+                    it[0]
+                }
+    }
+
+    override fun getAll(): Single<List<LocalWeather>>? {
+        return weatherDao.getAll()
     }
 }

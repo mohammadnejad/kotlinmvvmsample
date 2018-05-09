@@ -1,4 +1,4 @@
-package com.ms.kotlinmvvmsample.extension
+package com.ms.kotlinmvvmsample.core.extension
 
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProviders

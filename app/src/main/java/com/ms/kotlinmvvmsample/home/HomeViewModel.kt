@@ -3,10 +3,9 @@ package com.ms.kotlinmvvmsample.home
 import android.app.Application
 import android.arch.lifecycle.AndroidViewModel
 import android.util.Log
-import com.ms.kotlinmvvmsample.data.source.remote.RemoteWeather
+import com.ms.kotlinmvvmsample.core.extension.toast
 import com.ms.kotlinmvvmsample.data.source.WeatherRepository
 import com.ms.kotlinmvvmsample.data.source.local.LocalWeather
-import com.ms.kotlinmvvmsample.extension.toast
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.rxkotlin.subscribeBy
 import io.reactivex.schedulers.Schedulers
@@ -45,7 +44,6 @@ class HomeViewModel(
     }
 
     private fun currentWeatherLoadedSuccess(weather: LocalWeather?) {
-        Log.i(Companion.TAG, "current weather load success" + weather?.toString())
+        Log.i(TAG, "current weather load success" + weather?.toString())
     }
-
 }

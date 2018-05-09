@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.ms.kotlinmvvmsample.R
-import com.ms.kotlinmvvmsample.extension.obtainViewModel
+import com.ms.kotlinmvvmsample.core.extension.obtainViewModel
 import kotlinx.android.synthetic.main.fragment_home.*
 
 class HomeFragment : Fragment() {
@@ -43,7 +43,7 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         click.setOnClickListener {
-            homeViewModel.loadCurrentWeather("Tehran")
+            homeViewModel.loadCurrentWeather("London")
         }
     }
 

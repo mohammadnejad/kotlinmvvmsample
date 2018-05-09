@@ -20,5 +20,8 @@ interface WeatherDao {
     fun insert(weather: LocalWeather)
 
     @Query("select * from LocalWeather where name = :cityName")
-    fun getCurrentWeatherByCityName(cityName: String): Single<LocalWeather>
+    fun getCurrentWeatherByCityName(cityName: String): Single<List<LocalWeather>>
+
+    @Query("select * from LocalWeather")
+    fun getAll(): Single<List<LocalWeather>>
 }

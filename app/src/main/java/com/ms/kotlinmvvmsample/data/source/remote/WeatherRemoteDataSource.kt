@@ -24,4 +24,8 @@ class WeatherRemoteDataSource : WeatherDataSource {
     override fun getCurrentWeatherByCityName(cityName: String): Single<LocalWeather>? =
             weatherApi.getCurrentWeatherByCityName(cityName, ApiClient.API_KEY)
                     .map { WeatherMapper.transform(it) }
+
+    override fun getAll(): Single<List<LocalWeather>>? {
+        return null
+    }
 }

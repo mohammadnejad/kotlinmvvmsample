@@ -2,6 +2,7 @@ package com.ms.kotlinmvvmsample.data.source
 
 import com.ms.kotlinmvvmsample.data.source.local.*
 import com.ms.kotlinmvvmsample.data.source.remote.RemoteWeather
+import java.util.*
 
 /**
  * @author majid
@@ -14,6 +15,7 @@ class WeatherMapper {
         fun transform(remoteWeather: RemoteWeather?): LocalWeather? {
 
             return LocalWeather(
+                    UUID.randomUUID().toString(),
                     remoteWeather?.id!!,
                     remoteWeather.name!!,
                     remoteWeather.code,
