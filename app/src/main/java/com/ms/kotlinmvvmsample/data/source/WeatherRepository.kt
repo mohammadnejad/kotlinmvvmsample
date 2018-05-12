@@ -1,7 +1,7 @@
 package com.ms.kotlinmvvmsample.data.source
 
 import com.ms.kotlinmvvmsample.core.WeatherApplication
-import com.ms.kotlinmvvmsample.core.extension.isNetwokAvailable
+import com.ms.kotlinmvvmsample.core.extension.isNetworkAvailable
 import com.ms.kotlinmvvmsample.core.extension.toast
 import com.ms.kotlinmvvmsample.data.source.local.LocalWeather
 import io.reactivex.Single
@@ -24,7 +24,7 @@ class WeatherRepository(
     }
 
     override fun getCurrentWeatherByCityName(cityName: String): Single<LocalWeather>? {
-        return if (WeatherApplication.mContext.isNetwokAvailable()) {
+        return if (WeatherApplication.mContext.isNetworkAvailable()) {
             WeatherApplication.mContext.toast("online")
             weatherRemoteDataSource.getCurrentWeatherByCityName(cityName)
                     ?.doAfterSuccess {

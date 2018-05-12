@@ -13,7 +13,7 @@ import android.widget.Toast
 fun Context.toast(message: String?, duration: Int = Toast.LENGTH_SHORT) =
         Toast.makeText(this, message + "", duration).show()
 
-fun Context.isNetwokAvailable(): Boolean {
+fun Context.isNetworkAvailable(): Boolean {
     val connectivityManager = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
     return connectivityManager.activeNetworkInfo != null && connectivityManager.activeNetworkInfo.isConnected
 }
