@@ -15,6 +15,7 @@ import io.reactivex.Single
 class WeatherRepository(
         private val weatherRemoteDataSource: WeatherDataSource,
         private val weatherLocalDataSource: WeatherDataSource) : WeatherDataSource {
+
     override fun getAll(): Single<List<LocalWeather>>? {
         return weatherLocalDataSource.getAll()
     }
