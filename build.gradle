@@ -18,12 +18,13 @@ ext {
     rxAndroidVersion = '2.0.2'
     rxJavaVersion = '2.1.13'
     rxKotlinVersion = '2.2.0'
+    bottomNavigationVersion = '1.5.2'
 
     // Architecture Components dependency
     archLifecycleVersion = '1.1.1'
-    pagingVersion = '1.0.0-rc1'
-    roomVersion = '1.1.0-rc1'
-    roomRxVersion = '1.1.0-rc1'
+    pagingVersion = '1.0.0'
+    roomVersion = '1.1.0'
+    roomRxVersion = '1.1.0'
 
     // Release
     releaseApiUrl = "http://samples.openweathermap.org/data/2.5/"

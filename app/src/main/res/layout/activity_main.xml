@@ -13,31 +13,41 @@
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/mainToolbar"
+            style="@style/MToolbar"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            android:elevation="4dp"
-            android:theme="@style/Toolbar">
+            android:layout_height="?android:attr/actionBarSize">
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <ImageView
+                <TextView
+                    android:id="@+id/toolbarTitle"
+                    style="@style/Toolbar.TitleText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="?android:attr/selectableItemBackground"
-                    android:clickable="true"
+                    android:layout_centerInParent="true"
+                    android:text="@string/toolbar_title" />
+
+                <ImageButton
+                    style="@style/MActionButton"
+                    android:layout_width="?android:attr/actionBarSize"
+                    android:layout_height="?android:attr/actionBarSize"
                     android:contentDescription="@string/image_description"
-                    android:focusable="true"
                     app:srcCompat="@drawable/ic_arrow_back_24dp" />
+
+                <ImageButton
+                    style="@style/MActionButton"
+                    android:layout_width="?android:attr/actionBarSize"
+                    android:layout_height="?android:attr/actionBarSize"
+                    android:layout_alignParentRight="true"
+                    android:contentDescription="@string/image_description"
+                    app:srcCompat="@drawable/ic_search_24dp" />
             </RelativeLayout>
+
         </android.support.v7.widget.Toolbar>
     </android.support.design.widget.AppBarLayout>
 
-    <FrameLayout
-        android:id="@+id/frameLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+    <include layout="@layout/activity_main_content" />
 
 </LinearLayout>

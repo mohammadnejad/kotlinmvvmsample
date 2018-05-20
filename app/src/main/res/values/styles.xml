@@ -2,9 +2,8 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Base.AppTheme" />
 
-    <style name="AppTheme.OverlapSystemBar" parent="Base.AppTheme" />
-
     <style name="Base.AppTheme" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:windowBackground">@color/windowsBackground</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="colorPrimary">@color/colorPrimary</item>
@@ -12,6 +11,21 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="Toolbar" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="MToolbar" parent="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="android:background">@color/colorPrimary</item>
+        <item name="contentInsetStart">0dp</item>
+    </style>
+
+    <style name="Toolbar.TitleText" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">italic</item>
+        <item name="android:textColor">@color/white_op138</item>
+    </style>
+
+    <style name="MActionButton" parent="Widget.AppCompat.ActionButton">
+        <item name="android:background">?android:attr/selectableItemBackground</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+    </style>
 
 </resources>
