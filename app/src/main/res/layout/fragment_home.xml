@@ -9,6 +9,7 @@
         android:id="@+id/click"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="clicked" />
+        android:layout_gravity="center"
+        android:text="Hello Home Fragment" />
 
 </FrameLayout>
