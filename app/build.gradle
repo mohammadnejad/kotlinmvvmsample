@@ -80,6 +80,7 @@ dependencies {
     // ViewModel and LiveData
     implementation "android.arch.lifecycle:extensions:$rootProject.ext.archLifecycleVersion"
     implementation "android.arch.lifecycle:reactivestreams:$rootProject.ext.archLifecycleVersion"
+    implementation 'com.android.support:support-v4:27.1.1'
     kapt "android.arch.lifecycle:compiler:$rootProject.ext.archLifecycleVersion"
     testImplementation "android.arch.core:core-testing:$rootProject.ext.archLifecycleVersion"
 

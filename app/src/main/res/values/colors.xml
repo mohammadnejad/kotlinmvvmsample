@@ -9,8 +9,8 @@
     <color name="colorPrimaryText">#ffffff</color>
     <color name="colorAccentText">#000000</color>
     <color name="windowsBackground">#151a1e</color>
-    <color name="default_text_color">#8aFFFFFF</color>
+    <color name="default_text_color">#aaFFFFFF</color>
 
     <color name="white">#fff</color>
-    <color name="white_op138">#8affffff</color>
+    <color name="white_op138">#aaffffff</color>
 </resources>
