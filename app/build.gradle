@@ -104,9 +104,6 @@ dependencies {
     implementation "io.reactivex.rxjava2:rxjava:$rootProject.ext.rxJavaVersion"
     implementation "io.reactivex.rxjava2:rxkotlin:$rootProject.ext.rxKotlinVersion"
 
-    // Bottom Navigation
-    implementation "com.ss.bottomnavigation:bottomnavigation:$rootProject.ext.bottomNavigationVersion"
-
 //    debugImplementation 'com.amitshekhar.android:debug-db:1.0.3'
     testImplementation "junit:junit:$rootProject.ext.jUnitVersion"
     androidTestImplementation "com.android.support.test:runner:$rootProject.ext.runnerVersion"

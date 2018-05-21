@@ -2,7 +2,7 @@
 <resources>
 
     <style name="MActionButton" parent="Widget.AppCompat.ActionButton">
-        <item name="android:background">?android:attr/selectableItemBackgroundBorderless</item>
+        <item name="android:background">@drawable/tab_foreground</item>
     </style>
 
 </resources>

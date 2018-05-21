@@ -3,4 +3,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="image_description">image placeholder</string>
     <string name="toolbar_title">Weather</string>
+    <string name="bottom_navigation_tab_home">home</string>
+    <string name="bottom_navigation_tab_setting">setting</string>
+    <string name="bottom_navigation_tab_location">location</string>
 </resources>

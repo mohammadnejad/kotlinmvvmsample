@@ -11,7 +11,7 @@
         android:layout_height="match_parent"
         android:layout_above="@+id/bottomNavigation" />
 
-    <com.ss.bottomnavigation.BottomNavigation
+    <com.ms.kotlinmvvmsample.view.bottomnavigation.BottomNavigation
         android:id="@+id/bottomNavigation"
         android:layout_width="match_parent"
         android:layout_height="56dp"
@@ -19,30 +19,30 @@
         android:layout_gravity="bottom"
         android:background="@color/colorPrimary">
 
-        <com.ss.bottomnavigation.TabItem
+        <com.ms.kotlinmvvmsample.view.bottomnavigation.TabItem
+            android:id="@+id/tabHome"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            app:tab_icon="@drawable/ic_home_24dp"
+            app:tab_text="@string/bottom_navigation_tab_home" />
+
+        <com.ms.kotlinmvvmsample.view.bottomnavigation.TabItem
+            android:id="@+id/tabLocation"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            app:tab_icon="@drawable/ic_location_on_24dp"
+            app:tab_text="@string/bottom_navigation_tab_location" />
+
+        <com.ms.kotlinmvvmsample.view.bottomnavigation.TabItem
             android:id="@+id/tabSetting"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            app:tab_icon="@drawable/ic_search_24dp"
-            app:tab_text="@string/toolbar_title" />
+            app:tab_icon="@drawable/ic_settings_24dp"
+            app:tab_text="@string/bottom_navigation_tab_setting" />
 
-        <com.ss.bottomnavigation.TabItem
-            android:id="@+id/tabReport"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            app:tab_icon="@drawable/ic_search_24dp"
-            app:tab_text="@string/toolbar_title" />
-
-        <com.ss.bottomnavigation.TabItem
-            android:id="@+id/tabSchedule"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            app:tab_icon="@drawable/ic_search_24dp"
-            app:tab_text="@string/toolbar_title" />
-
-    </com.ss.bottomnavigation.BottomNavigation>
+    </com.ms.kotlinmvvmsample.view.bottomnavigation.BottomNavigation>
 
 </RelativeLayout>
