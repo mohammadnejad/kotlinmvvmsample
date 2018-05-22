@@ -2,20 +2,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.ms.kotlinmvvmsample.home.HomeFragment">
-
+    tools:context="com.ms.kotlinmvvmsample.location.Location2Fragment">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Hello Home Fragment 1" />
+        android:text="Hello LocationFragment 2" />
 
     <Button
-        android:id="@+id/home1Button"
+        android:id="@+id/location2Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="Go to HomeFragment 2" />
+        android:text="Go to LocationFragment 3" />
 
 </FrameLayout>

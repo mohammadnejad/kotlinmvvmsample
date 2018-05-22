@@ -37,12 +37,14 @@ private inline fun FragmentManager.transact(action: FragmentTransaction.() -> Un
 fun AppCompatActivity.addFragmentInActivity(fragment: Fragment, frameId: Int) {
     supportFragmentManager.transact {
         add(frameId, fragment)
+        addToBackStack("")
     }
 }
 
-fun AppCompatActivity.replaceFragmentInActivity(fragment: Fragment, frameId: Int) {
+fun AppCompatActivity.replaceFragmentInActivity(fragment: Fragment, frameId: Int, stackName: String? = null) {
     supportFragmentManager.transact {
         replace(frameId, fragment)
+        addToBackStack(stackName)
     }
 }
 

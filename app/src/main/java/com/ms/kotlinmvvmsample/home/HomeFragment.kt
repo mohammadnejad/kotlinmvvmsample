@@ -5,11 +5,12 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.ms.kotlinmvvmsample.BaseFragment
 import com.ms.kotlinmvvmsample.R
 import com.ms.kotlinmvvmsample.core.extension.obtainViewModel
 import kotlinx.android.synthetic.main.fragment_home.*
 
-class HomeFragment : Fragment() {
+class HomeFragment : BaseFragment() {
 
     private lateinit var homeViewModel: HomeViewModel
 
@@ -42,8 +43,9 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        click.setOnClickListener {
-            homeViewModel.loadCurrentWeather("London")
+        home1Button.setOnClickListener {
+            //            homeViewModel.loadCurrentWeather("London")
+            replaceFragment(Home2Fragment.newInstance())
         }
     }
 
