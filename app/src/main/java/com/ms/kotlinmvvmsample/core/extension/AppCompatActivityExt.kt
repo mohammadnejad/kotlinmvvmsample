@@ -41,10 +41,16 @@ fun AppCompatActivity.addFragmentInActivity(fragment: Fragment, frameId: Int) {
     }
 }
 
-fun AppCompatActivity.replaceFragmentInActivity(fragment: Fragment, frameId: Int, stackName: String? = null) {
+fun AppCompatActivity.replaceFragmentInActivity(fragment: Fragment, frameId: Int, stackName: String? = null, tagName: String? = null) {
+    supportFragmentManager.transact {
+        replace(frameId, fragment, tagName)
+        addToBackStack(stackName)
+    }
+}
+
+fun AppCompatActivity.replaceFragmentInActivity(fragment: Fragment, frameId: Int) {
     supportFragmentManager.transact {
         replace(frameId, fragment)
-        addToBackStack(stackName)
     }
 }
 
