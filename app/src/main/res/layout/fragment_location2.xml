@@ -1,10 +1,12 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/windowsBackground"
     tools:context="com.ms.kotlinmvvmsample.location.Location2Fragment">
 
     <TextView
+        android:id="@+id/locationText2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -12,9 +14,9 @@
 
     <Button
         android:id="@+id/location2Button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/locationText2"
         android:text="Go to LocationFragment 3" />
 
-</FrameLayout>
+</RelativeLayout>

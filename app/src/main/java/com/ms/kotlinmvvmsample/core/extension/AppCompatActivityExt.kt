@@ -31,31 +31,38 @@ fun AppCompatActivity.setActionBar(@IdRes toolBarId: Int, action: ActionBar.() -
 private inline fun FragmentManager.transact(action: FragmentTransaction.() -> Unit) {
     beginTransaction().apply {
         action()
-    }.commit()
+    }.commitAllowingStateLoss()
 }
 
-fun AppCompatActivity.addFragmentInActivity(fragment: Fragment, frameId: Int) {
-    supportFragmentManager.transact {
-        add(frameId, fragment)
-        addToBackStack("")
+fun AppCompatActivity.replaceFragmentInActivity(fragment: Fragment, frameId: Int, stackName: String? = null, tagName: String? = null, hasBackStack: Boolean = false) {
+    if (hasBackStack) {
+        supportFragmentManager.transact {
+            replace(frameId, fragment, tagName)
+            addToBackStack(stackName)
+        }
+    } else {
+        supportFragmentManager.transact {
+            replace(frameId, fragment, tagName)
+        }
     }
 }
 
-fun AppCompatActivity.replaceFragmentInActivity(fragment: Fragment, frameId: Int, stackName: String? = null, tagName: String? = null) {
-    supportFragmentManager.transact {
-        replace(frameId, fragment, tagName)
-        addToBackStack(stackName)
+fun AppCompatActivity.replaceFragmentInActivity(fragment: Fragment, frameId: Int, fragmentManager: FragmentManager,
+                                                stackName: String? = null, tagName: String? = null, hasBackStack: Boolean = false) {
+    if (hasBackStack) {
+        fragmentManager.transact {
+            replace(frameId, fragment, tagName)
+            addToBackStack(stackName)
+        }
+    } else {
+        fragmentManager.transact {
+            replace(frameId, fragment, tagName)
+        }
     }
 }
 
-fun AppCompatActivity.replaceFragmentInActivity(fragment: Fragment, frameId: Int) {
-    supportFragmentManager.transact {
-        replace(frameId, fragment)
-    }
-}
-
-fun <T : ViewModel> AppCompatActivity.obtainViewModel(viewModelClass: Class<T>) =
-        ViewModelProviders.of(this, ViewModelFactory.getInstance(application)).get(viewModelClass)
+//fun <T : ViewModel> AppCompatActivity.obtainViewModel(viewModelClass: Class<T>) =
+//        ViewModelProviders.of(this, ViewModelFactory.getInstance(application)).get(viewModelClass)
 
 fun <T : ViewModel> Fragment.obtainViewModel(viewModelClass: Class<T>) =
         ViewModelProviders.of(this, ViewModelFactory.getInstance(activity!!.application)).get(viewModelClass)

@@ -1,7 +1,6 @@
 package com.ms.kotlinmvvmsample
 
 import android.os.Bundle
-import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import com.ms.kotlinmvvmsample.core.extension.replaceFragmentInActivity
 import com.ms.kotlinmvvmsample.core.extension.setActionBar
@@ -13,7 +12,7 @@ import kotlinx.android.synthetic.main.activity_main_content.*
 
 class MainActivity : AppCompatActivity(), IFragmentCallBack, OnSelectedItemChangeListener {
 
-    private var onTabItemSelected = 0
+    private var selectedTabItemPos = 0
     private var horizontalStack: MutableList<Int> = arrayListOf()
 
     private val homeFragment: HomeFragment by lazy {
@@ -29,11 +28,9 @@ class MainActivity : AppCompatActivity(), IFragmentCallBack, OnSelectedItemChang
     }
 
     companion object {
-        const val POP_FLAG: Int = 0
-        const val ROOT_STACK: String = "rootStack"
-        const val HOME_STACK: Int = 0
-        const val LOCATION_STACK: Int = 1
-        const val SETTING_STACK: Int = 2
+        const val TAB_HOME_POSITION: Int = 0
+        const val TAB_LOCATION_POSITION: Int = 1
+        const val TAB_SETTING_POSITION: Int = 2
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,67 +48,68 @@ class MainActivity : AppCompatActivity(), IFragmentCallBack, OnSelectedItemChang
     private fun setupBottomNavigation() {
         bottomNavigation.setOnSelectedItemChangeListener(this)
 
-        tabHome.itemId = HOME_STACK
-        tabSetting.itemId = SETTING_STACK
-        tabLocation.itemId = LOCATION_STACK
+        tabHome.itemPosition = TAB_HOME_POSITION
+        tabSetting.itemPosition = TAB_SETTING_POSITION
+        tabLocation.itemPosition = TAB_LOCATION_POSITION
     }
 
-    override fun onSelectedItemChanged(tabId: Int) {
-        when (tabId) {
+    override fun onSelectedItemChanged(tabViewId: Int) {
+        when (tabViewId) {
             R.id.tabHome -> {
-                addToHorizontalBackStack(homeFragment, tabHome.itemId)
-                onTabItemSelected = tabHome.itemId
+                addToHorizontalBackStack(homeFragment, tabHome.itemPosition)
             }
             R.id.tabLocation -> {
-                addToHorizontalBackStack(locationFragment, tabLocation.itemId)
-                onTabItemSelected = tabLocation.itemId
+                addToHorizontalBackStack(locationFragment, tabLocation.itemPosition)
             }
             R.id.tabSetting -> {
-                addToHorizontalBackStack(settingFragment, tabSetting.itemId)
-                onTabItemSelected = tabSetting.itemId
+                addToHorizontalBackStack(settingFragment, tabSetting.itemPosition)
             }
         }
     }
 
+    // Called from inside MainActivity for root stack
     private fun addToHorizontalBackStack(fragment: BaseFragment, tabId: Int) {
+        selectedTabItemPos = tabId
+
         horizontalStack.remove(tabId)
         horizontalStack.add(tabId)
-        pushFragmentToHorizontalStack(fragment, ROOT_STACK, tabId.toString())
+
+        replaceFragmentInActivity(fragment, R.id.frameLayout, hasBackStack = true)
     }
 
+    // Called from outside MainActivity for child stack
     override fun replaceFragment(fragment: BaseFragment) {
-//        with(fragment) {
-//            when {
-//                (fragment) is HomeFragment -> replaceFragment(fragment, HOME_STACK)
-//                (fragment) is Home2Fragment -> replaceFragment(fragment, HOME_STACK)
-//                (fragment) is Home3Fragment -> replaceFragment(fragment, HOME_STACK)
-//
-//                (fragment) is Setting1Fragment -> replaceFragment(fragment, SETTING_STACK)
-//                (fragment) is Setting2Fragment -> replaceFragment(fragment, SETTING_STACK)
-//                (fragment) is Setting3Fragment -> replaceFragment(fragment, SETTING_STACK)
-//
-//                (fragment) is Location1Fragment -> replaceFragment(fragment, LOCATION_STACK)
-//                (fragment) is Location2Fragment -> replaceFragment(fragment, LOCATION_STACK)
-//                (fragment) is Location3Fragment -> replaceFragment(fragment, LOCATION_STACK)
-//
-//                else -> throw Exception("not found your fragment")
-//            }
-//        }
-    }
-
-    private fun pushFragmentToHorizontalStack(fragment: Fragment, stackName: String, tagName: String) {
-        replaceFragmentInActivity(fragment, R.id.frameLayout, stackName, tagName)
+        when (selectedTabItemPos) {
+            TAB_HOME_POSITION -> replaceFragmentInActivity(fragment, R.id.frameLayout, homeFragment.childFragmentManager, hasBackStack = true)
+            TAB_LOCATION_POSITION -> replaceFragmentInActivity(fragment, R.id.frameLayout, locationFragment.childFragmentManager, hasBackStack = true)
+            TAB_SETTING_POSITION -> replaceFragmentInActivity(fragment, R.id.frameLayout, settingFragment.childFragmentManager, hasBackStack = true)
+        }
     }
 
     override fun onBackPressed() {
-        super.onBackPressed()
+        val childFragmentManager = when (selectedTabItemPos) {
+            TAB_HOME_POSITION -> homeFragment.childFragmentManager
+            TAB_LOCATION_POSITION -> locationFragment.childFragmentManager
+            TAB_SETTING_POSITION -> settingFragment.childFragmentManager
 
-        if (horizontalStack.size > 1) {
-            supportFragmentManager.popBackStack(ROOT_STACK, POP_FLAG)
-            horizontalStack.removeAt(horizontalStack.size - 1)
-            bottomNavigation.selectedItem = horizontalStack[horizontalStack.size - 1]
-        } else {
+            else -> null
+        }
+
+        if (childFragmentManager == null) {
             supportFinishAfterTransition()
+            return
+        }
+
+        if (childFragmentManager.backStackEntryCount >= 1) {
+            childFragmentManager.popBackStack()
+        } else {
+            if (horizontalStack.size > 1) {
+                supportFragmentManager.popBackStack()
+                horizontalStack.removeAt(horizontalStack.size - 1)
+                bottomNavigation.selectedItem = horizontalStack[horizontalStack.size - 1]
+            } else {
+                supportFinishAfterTransition()
+            }
         }
     }
 }

@@ -48,7 +48,7 @@ public class TabItem extends FrameLayout implements View.OnClickListener {
     private AnimationHelper animationHelper;
     private BottomNavigation bottomNavigation;
 
-    private int itemId;
+    private int itemPosition;
 
     public TabItem(Context context) {
         super(context);
@@ -219,11 +219,11 @@ public class TabItem extends FrameLayout implements View.OnClickListener {
         }
     }
 
-    public int getItemId() {
-        return itemId;
+    public int getItemPosition() {
+        return itemPosition;
     }
 
-    public void setItemId(int itemId) {
-        this.itemId = itemId;
+    public void setItemPosition(int itemPosition) {
+        this.itemPosition = itemPosition;
     }
 }
