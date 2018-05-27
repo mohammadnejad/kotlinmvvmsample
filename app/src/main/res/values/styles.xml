@@ -21,7 +21,7 @@
     <style name="Toolbar.TitleText" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
         <item name="android:textSize">20sp</item>
         <item name="android:textStyle">bold</item>
-        <item name="android:textColor">@color/white_op138</item>
+        <item name="android:textColor">@color/whiteOp138</item>
         <item name="android:fontFamily">@font/dancing_script</item>
     </style>
 

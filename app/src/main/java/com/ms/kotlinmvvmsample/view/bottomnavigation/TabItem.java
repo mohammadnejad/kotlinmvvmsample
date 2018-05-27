@@ -157,10 +157,10 @@ public class TabItem extends FrameLayout implements View.OnClickListener {
             try {
                 text = typedArray.getString(R.styleable.TabItem_tab_text);
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    selectedTabTextColor = typedArray.getColor(R.styleable.TabItem_tab_text_color, getResources().getColor(R.color.default_text_color, null));
+                    selectedTabTextColor = typedArray.getColor(R.styleable.TabItem_tab_text_color, getResources().getColor(R.color.defaultTextColor, null));
                     unselectedTabTextColor = typedArray.getColor(R.styleable.TabItem_unselected_tab_text_color, 0);
                 } else {
-                    selectedTabTextColor = typedArray.getColor(R.styleable.TabItem_tab_text_color, getResources().getColor(R.color.default_text_color));
+                    selectedTabTextColor = typedArray.getColor(R.styleable.TabItem_tab_text_color, getResources().getColor(R.color.defaultTextColor));
                     unselectedTabTextColor = typedArray.getColor(R.styleable.TabItem_unselected_tab_text_color, 0);
                 }
                 selectedTabIcon = typedArray.getDrawable(R.styleable.TabItem_tab_icon);

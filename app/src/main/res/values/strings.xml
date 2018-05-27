@@ -6,4 +6,27 @@
     <string name="bottom_navigation_tab_home">home</string>
     <string name="bottom_navigation_tab_setting">setting</string>
     <string name="bottom_navigation_tab_location">location</string>
+
+    <string name="degree_text">32&#xb0;c</string>
+    <string name="city_name">LONDON,UK</string>
+    <string name="weather_status">SUNNY</string>
+
+    <string name="windFlowValue">78</string>
+    <string name="windFlowTitle">Wind Flow</string>
+    <string name="preceptionValue">52</string>
+    <string name="preceptionTitle">Preception</string>
+    <string name="humidityValue">89</string>
+    <string name="humidityTitle">Humidity</string>
+
+    <string name="windy">Windy</string>
+    <string name="rainy">Rainy</string>
+    <string name="rainbow">Rainbow</string>
+    <string name="sunny">Sunny</string>
+    <string name="moon">Moon</string>
+    <string name="pm12">12 pm</string>
+    <string name="pm1">1 pm</string>
+    <string name="pm2">2 pm</string>
+    <string name="pm4">4 pm</string>
+    <string name="pm7">7 pm</string>
+
 </resources>

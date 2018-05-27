@@ -43,10 +43,10 @@ class HomeFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        home1Button.setOnClickListener {
-            //            homeViewModel.loadCurrentWeather("London")
-            replaceFragment(Home2Fragment.newInstance())
-        }
+//        home1Button.setOnClickListener {
+//            //            homeViewModel.loadCurrentWeather("London")
+//            replaceFragment(Home2Fragment.newInstance())
+//        }
     }
 
     private fun obtainViewModel(): HomeViewModel = obtainViewModel(HomeViewModel::class.java)

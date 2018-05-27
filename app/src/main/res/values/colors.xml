@@ -9,8 +9,9 @@
     <color name="colorPrimaryText">#ffffff</color>
     <color name="colorAccentText">#000000</color>
     <color name="windowsBackground">#151a1e</color>
-    <color name="default_text_color">#aaFFFFFF</color>
+    <color name="defaultTextColor">#aaFFFFFF</color>
 
     <color name="white">#fff</color>
-    <color name="white_op138">#aaffffff</color>
+    <color name="whiteOp138">#aaffffff</color>
+    <color name="infoLayoutColor">#242c33</color>
 </resources>
