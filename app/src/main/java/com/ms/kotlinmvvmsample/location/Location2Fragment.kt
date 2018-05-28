@@ -32,4 +32,7 @@ class Location2Fragment : BaseFragment() {
             replaceFragment(Location3Fragment.newInstance())
         }
     }
+
+    override fun subscribeViews() {
+    }
 }

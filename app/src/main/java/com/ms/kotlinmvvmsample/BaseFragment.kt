@@ -4,13 +4,19 @@ package com.ms.kotlinmvvmsample
 import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.view.View
 
-open class BaseFragment : Fragment() {
+abstract class BaseFragment : Fragment() {
 
     private var mFragmentListener: IFragmentCallBack? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        subscribeViews()
     }
 
     override fun onAttach(context: Context?) {
@@ -26,4 +32,6 @@ open class BaseFragment : Fragment() {
     fun replaceFragment(fragment: BaseFragment) {
         mFragmentListener?.replaceFragment(fragment)
     }
+
+    abstract fun subscribeViews()
 }

@@ -1,25 +1,22 @@
 package com.ms.kotlinmvvmsample.home
 
+import android.arch.lifecycle.Observer
 import android.os.Bundle
-import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.ms.kotlinmvvmsample.BaseFragment
 import com.ms.kotlinmvvmsample.R
 import com.ms.kotlinmvvmsample.core.extension.obtainViewModel
+import com.ms.kotlinmvvmsample.data.source.local.LocalWeather
 import kotlinx.android.synthetic.main.fragment_home.*
 
 class HomeFragment : BaseFragment() {
 
     private lateinit var homeViewModel: HomeViewModel
+    private var rootView: View? = null
 
     companion object {
-        /**
-         * Use this factory method to create a new instance of
-         *
-         * @return A new instance of fragment HomeFragment.
-         */
         fun newInstance(): HomeFragment {
             val fragment = HomeFragment()
             val args = Bundle()
@@ -30,23 +27,32 @@ class HomeFragment : BaseFragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         homeViewModel = obtainViewModel()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false)
+        if (rootView == null) {
+            rootView = inflater.inflate(R.layout.fragment_home, container, false)
+        }
+
+        return rootView
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        homeViewModel.getCurrentWeather("London")
+    }
 
-//        home1Button.setOnClickListener {
-//            //            homeViewModel.loadCurrentWeather("London")
-//            replaceFragment(Home2Fragment.newInstance())
-//        }
+    override fun subscribeViews() {
+        val weather = Observer<LocalWeather> {
+            degreeTextView.text = it?.main?.temp.toString()
+        }
+
+        // add to view model observer
+        homeViewModel.mWeather.observe(this, weather)
     }
 
     private fun obtainViewModel(): HomeViewModel = obtainViewModel(HomeViewModel::class.java)

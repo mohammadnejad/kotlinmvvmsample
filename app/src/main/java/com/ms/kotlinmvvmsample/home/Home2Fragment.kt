@@ -33,4 +33,7 @@ class Home2Fragment : BaseFragment() {
             replaceFragment(Home3Fragment.newInstance())
         }
     }
+
+    override fun subscribeViews() {
+    }
 }

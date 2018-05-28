@@ -32,4 +32,7 @@ class Setting1Fragment : BaseFragment() {
             replaceFragment(Setting2Fragment.newInstance())
         }
     }
+
+    override fun subscribeViews() {
+    }
 }

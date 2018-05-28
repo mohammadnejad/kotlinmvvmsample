@@ -2,10 +2,11 @@ package com.ms.kotlinmvvmsample.home
 
 import android.app.Application
 import android.arch.lifecycle.AndroidViewModel
-import android.util.Log
+import android.arch.lifecycle.MutableLiveData
 import com.ms.kotlinmvvmsample.core.extension.toast
 import com.ms.kotlinmvvmsample.data.source.WeatherRepository
 import com.ms.kotlinmvvmsample.data.source.local.LocalWeather
+import com.ms.kotlinmvvmweatherapp.SingleLiveEvent
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.rxkotlin.subscribeBy
 import io.reactivex.schedulers.Schedulers
@@ -21,21 +22,25 @@ class HomeViewModel(
         private val weatherRepository: WeatherRepository
 ) : AndroidViewModel(context) {
 
+    var mWeather = MutableLiveData<LocalWeather>()
+
     companion object {
         private val TAG = HomeViewModel::class.java.simpleName
     }
 
-    fun start(cityName: String) {
-        loadCurrentWeather(cityName)
+    fun getCurrentWeather(cityName: String) {
+        if (mWeather.value == null) {
+            loadCurrentWeather(cityName)
+        }
     }
 
-    fun loadCurrentWeather(cityName: String) {
+    private fun loadCurrentWeather(cityName: String) {
         weatherRepository.getCurrentWeatherByCityName(cityName)
                 ?.subscribeOn(Schedulers.io())
                 ?.observeOn(AndroidSchedulers.mainThread())
                 ?.subscribeBy(
                         onSuccess = {
-                            currentWeatherLoadedSuccess(it)
+                            mWeather.value = it
                         },
                         onError = {
                             context.toast(it.message)
@@ -43,7 +48,4 @@ class HomeViewModel(
                 )
     }
 
-    private fun currentWeatherLoadedSuccess(weather: LocalWeather?) {
-        Log.i(TAG, "current weather load success" + weather?.toString())
-    }
 }

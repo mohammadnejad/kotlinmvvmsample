@@ -23,4 +23,7 @@ class Setting3Fragment : BaseFragment() {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_setting3, container, false)
     }
+
+    override fun subscribeViews() {
+    }
 }

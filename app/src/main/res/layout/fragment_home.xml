@@ -71,6 +71,7 @@
                 android:paddingTop="8dp">
 
                 <TextView
+                    android:id="@+id/windFlowTextView"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
@@ -111,6 +112,7 @@
                 android:paddingTop="8dp">
 
                 <TextView
+                    android:id="@+id/preceptionTextView"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
@@ -149,6 +151,7 @@
                 android:paddingTop="8dp">
 
                 <TextView
+                    android:id="@+id/humidityTextView"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
@@ -199,6 +202,7 @@
                 android:paddingTop="8dp">
 
                 <TextView
+                    android:id="@+id/time1StatusTextView"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
@@ -218,6 +222,7 @@
                     app:srcCompat="@drawable/snowflake" />
 
                 <TextView
+                    android:id="@+id/time1TextView"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
@@ -236,6 +241,7 @@
                 android:paddingTop="8dp">
 
                 <TextView
+                    android:id="@+id/time2StatusTextView"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
@@ -255,6 +261,7 @@
                     app:srcCompat="@drawable/sun" />
 
                 <TextView
+                    android:id="@+id/time2TextView"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
@@ -273,6 +280,7 @@
                 android:paddingTop="8dp">
 
                 <TextView
+                    android:id="@+id/time3StatusTextView"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
@@ -292,6 +300,7 @@
                     app:srcCompat="@drawable/rain" />
 
                 <TextView
+                    android:id="@+id/time3TextView"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
@@ -310,6 +319,7 @@
                 android:paddingTop="8dp">
 
                 <TextView
+                    android:id="@+id/time4StatusTextView"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
@@ -329,6 +339,7 @@
                     app:srcCompat="@drawable/cloudy" />
 
                 <TextView
+                    android:id="@+id/time4TextView"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
@@ -347,6 +358,7 @@
                 android:paddingTop="8dp">
 
                 <TextView
+                    android:id="@+id/time5StatusTextView"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
@@ -366,6 +378,7 @@
                     app:srcCompat="@drawable/sun" />
 
                 <TextView
+                    android:id="@+id/time5TextView"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"

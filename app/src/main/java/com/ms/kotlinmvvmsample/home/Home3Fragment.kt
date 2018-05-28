@@ -25,4 +25,7 @@ class Home3Fragment : BaseFragment() {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_home3, container, false)
     }
+
+    override fun subscribeViews() {
+    }
 }
