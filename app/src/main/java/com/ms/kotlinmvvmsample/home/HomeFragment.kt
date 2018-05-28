@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import com.ms.kotlinmvvmsample.BaseFragment
 import com.ms.kotlinmvvmsample.R
 import com.ms.kotlinmvvmsample.core.extension.obtainViewModel
-import com.ms.kotlinmvvmsample.data.source.local.LocalWeather
 import kotlinx.android.synthetic.main.fragment_home.*
 
 class HomeFragment : BaseFragment() {
@@ -32,13 +31,7 @@ class HomeFragment : BaseFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        // Inflate the layout for this fragment
-        if (rootView == null) {
-            rootView = inflater.inflate(R.layout.fragment_home, container, false)
-        }
-
-        return rootView
-
+        return rootView ?: inflater.inflate(R.layout.fragment_home, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -47,12 +40,10 @@ class HomeFragment : BaseFragment() {
     }
 
     override fun subscribeViews() {
-        val weather = Observer<LocalWeather> {
-            degreeTextView.text = it?.main?.temp.toString()
-        }
-
         // add to view model observer
-        homeViewModel.mWeather.observe(this, weather)
+        homeViewModel.mWeather.observe(this, Observer {
+            degreeTextView.text = it?.main?.temp.toString()
+        })
     }
 
     private fun obtainViewModel(): HomeViewModel = obtainViewModel(HomeViewModel::class.java)

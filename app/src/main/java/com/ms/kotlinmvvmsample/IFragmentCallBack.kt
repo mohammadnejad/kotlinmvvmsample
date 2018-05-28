@@ -7,6 +7,5 @@ package com.ms.kotlinmvvmsample
  * @since 5/23/18
  */
 interface IFragmentCallBack {
-
     fun replaceFragment(fragment: BaseFragment)
 }
