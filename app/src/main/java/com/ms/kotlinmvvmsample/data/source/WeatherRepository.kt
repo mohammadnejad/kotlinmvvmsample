@@ -3,6 +3,7 @@ package com.ms.kotlinmvvmsample.data.source
 import com.ms.kotlinmvvmsample.core.WeatherApplication
 import com.ms.kotlinmvvmsample.core.extension.isNetworkAvailable
 import com.ms.kotlinmvvmsample.core.extension.toast
+import com.ms.kotlinmvvmsample.data.source.local.LocalForecast
 import com.ms.kotlinmvvmsample.data.source.local.LocalWeather
 import io.reactivex.Single
 
@@ -35,6 +36,10 @@ class WeatherRepository(
             WeatherApplication.mContext.toast("offline")
             weatherLocalDataSource.getCurrentWeatherByCityName(cityName)
         }
+    }
+
+    override fun getForecast(cityName: String): Single<LocalForecast>? {
+        return weatherRemoteDataSource.getForecast(cityName)
     }
 
     companion object {

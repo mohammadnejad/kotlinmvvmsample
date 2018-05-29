@@ -26,7 +26,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="8dp"
             android:layout_marginTop="-32dp"
-            android:text="@string/degree_text"
+            tools:text="@string/degree_text"
             android:textColor="@color/whiteOp138"
             android:textSize="42sp" />
 
@@ -76,7 +76,7 @@
                     android:layout_height="0dp"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="@string/windFlowValue"
+                    tools:text="@string/windFlowValue"
                     android:textColor="@color/colorAccentDark"
                     android:textSize="24sp" />
 
@@ -117,7 +117,7 @@
                     android:layout_height="0dp"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="@string/preceptionValue"
+                    tools:text="@string/preceptionValue"
                     android:textColor="@color/colorAccentDark"
                     android:textSize="24sp" />
 
@@ -156,7 +156,7 @@
                     android:layout_height="0dp"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="@string/humidityValue"
+                    tools:text="@string/humidityValue"
                     android:textColor="@color/colorAccentDark"
                     android:textSize="24sp" />
 

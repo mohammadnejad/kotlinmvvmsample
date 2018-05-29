@@ -1,6 +1,7 @@
 package com.ms.kotlinmvvmsample.data.source.local
 
 import com.ms.kotlinmvvmsample.data.source.WeatherDataSource
+import com.ms.kotlinmvvmsample.data.source.remote.Forecast
 import io.reactivex.Single
 
 /**
@@ -20,6 +21,10 @@ class WeatherLocalDataSource(private val weatherDao: WeatherDao) : WeatherDataSo
                 .map {
                     it[0]
                 }
+    }
+
+    override fun getForecast(cityName: String): Single<LocalForecast>? {
+        return null
     }
 
     override fun getAll(): Single<List<LocalWeather>>? {

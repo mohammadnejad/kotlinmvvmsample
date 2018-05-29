@@ -16,4 +16,10 @@ interface WeatherApi {
             @Query("q") cityName: String,
             @Query("appid") key: String
     ): Single<RemoteWeather>
+
+    @GET("forecast")
+    fun getForecast(
+            @Query("q") cityName: String,
+            @Query("appid") key: String
+    ): Single<RemoteForecast>
 }

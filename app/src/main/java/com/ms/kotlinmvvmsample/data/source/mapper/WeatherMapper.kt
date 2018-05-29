@@ -1,4 +1,4 @@
-package com.ms.kotlinmvvmsample.data.source
+package com.ms.kotlinmvvmsample.data.source.mapper
 
 import com.ms.kotlinmvvmsample.data.source.local.*
 import com.ms.kotlinmvvmsample.data.source.remote.RemoteWeather

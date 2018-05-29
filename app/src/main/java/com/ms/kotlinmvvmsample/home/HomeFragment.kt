@@ -42,10 +42,13 @@ class HomeFragment : BaseFragment() {
     override fun subscribeViews() {
         // add to view model observer
         homeViewModel.mWeather.observe(this, Observer {
-            degreeTextView.text = it?.main?.temp.toString()
+            cityNameTextView.text = String.format(resources.getString(R.string.city_name), it?.name, it?.sys?.country).toUpperCase()
+            degreeTextView.text = String.format(resources.getString(R.string.degree_text), it?.main?.temp?.toInt().toString())
+            windFlowTextView.text = it?.wind?.deg?.toInt().toString()
+            preceptionTextView.text = it?.main?.pressure?.toString()
+            humidityTextView.text = it?.main?.humidity?.toString()
         })
     }
 
     private fun obtainViewModel(): HomeViewModel = obtainViewModel(HomeViewModel::class.java)
-
 }
