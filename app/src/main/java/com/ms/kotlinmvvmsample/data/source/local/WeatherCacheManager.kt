@@ -10,10 +10,13 @@ import io.reactivex.Single
  * @version 1.0
  * @since 4/16/18
  */
-class WeatherLocalDataSource(private val weatherDao: WeatherDao) : WeatherDataSource {
+class WeatherCacheManager(private val weatherDao: WeatherDao) : IWeatherCacheManager {
 
     override fun insertCurrentWeather(localWeather: LocalWeather) {
         weatherDao.insert(localWeather)
+    }
+
+    override fun insertForecast(forecast: LocalForecast) {
     }
 
     override fun getCurrentWeatherByCityName(cityName: String): Single<LocalWeather>? {

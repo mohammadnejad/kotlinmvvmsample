@@ -6,7 +6,6 @@ import android.arch.lifecycle.MutableLiveData
 import com.ms.kotlinmvvmsample.core.extension.toast
 import com.ms.kotlinmvvmsample.data.source.WeatherRepository
 import com.ms.kotlinmvvmsample.data.source.local.LocalWeather
-import com.ms.kotlinmvvmweatherapp.SingleLiveEvent
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.rxkotlin.subscribeBy
 import io.reactivex.schedulers.Schedulers

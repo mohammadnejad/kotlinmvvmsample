@@ -3,6 +3,7 @@ package com.ms.kotlinmvvmsample.data.source
 import com.ms.kotlinmvvmsample.core.WeatherApplication
 import com.ms.kotlinmvvmsample.core.extension.isNetworkAvailable
 import com.ms.kotlinmvvmsample.core.extension.toast
+import com.ms.kotlinmvvmsample.data.source.local.IWeatherCacheManager
 import com.ms.kotlinmvvmsample.data.source.local.LocalForecast
 import com.ms.kotlinmvvmsample.data.source.local.LocalWeather
 import io.reactivex.Single
@@ -15,31 +16,34 @@ import io.reactivex.Single
  */
 class WeatherRepository(
         private val weatherRemoteDataSource: WeatherDataSource,
-        private val weatherLocalDataSource: WeatherDataSource) : WeatherDataSource {
-
-    override fun getAll(): Single<List<LocalWeather>>? {
-        return weatherLocalDataSource.getAll()
-    }
-
-    override fun insertCurrentWeather(localWeather: LocalWeather) {
-        weatherLocalDataSource.insertCurrentWeather(localWeather)
-    }
+        private val weatherCacheManager: IWeatherCacheManager) : WeatherDataSource {
 
     override fun getCurrentWeatherByCityName(cityName: String): Single<LocalWeather>? {
         return if (WeatherApplication.mContext.isNetworkAvailable()) {
             WeatherApplication.mContext.toast("online")
             weatherRemoteDataSource.getCurrentWeatherByCityName(cityName)
                     ?.doAfterSuccess {
-                        insertCurrentWeather(it)
+                        weatherCacheManager.insertCurrentWeather(it)
                     }
         } else {
             WeatherApplication.mContext.toast("offline")
-            weatherLocalDataSource.getCurrentWeatherByCityName(cityName)
+            weatherCacheManager.getCurrentWeatherByCityName(cityName)
         }
     }
 
     override fun getForecast(cityName: String): Single<LocalForecast>? {
-        return weatherRemoteDataSource.getForecast(cityName)
+        return if (WeatherApplication.mContext.isNetworkAvailable()) {
+            weatherRemoteDataSource.getForecast(cityName)
+                    ?.doAfterSuccess {
+                        weatherCacheManager.insertForecast(it)
+                    }
+        } else {
+            weatherCacheManager.getForecast(cityName)
+        }
+    }
+
+    override fun getAll(): Single<List<LocalWeather>>? {
+        return null
     }
 
     companion object {
@@ -48,9 +52,9 @@ class WeatherRepository(
         @JvmStatic
         fun getInstance(
                 weatherRemoteDataSource: WeatherDataSource,
-                weatherLocalDataSource: WeatherDataSource) =
+                cacheManager: IWeatherCacheManager) =
                 INSTANCE ?: synchronized(WeatherDataSource::class.java) {
-                    INSTANCE ?: WeatherRepository(weatherRemoteDataSource, weatherLocalDataSource)
+                    INSTANCE ?: WeatherRepository(weatherRemoteDataSource, cacheManager)
                             .also { INSTANCE = it }
                 }
 

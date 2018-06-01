@@ -20,9 +20,6 @@ class WeatherRemoteDataSource : WeatherDataSource {
         ApiClient.getRetrofitInstance().create(WeatherApi::class.java)
     }
 
-    override fun insertCurrentWeather(localWeather: LocalWeather) {
-    }
-
     override fun getCurrentWeatherByCityName(cityName: String): Single<LocalWeather>? =
             weatherApi.getCurrentWeatherByCityName(cityName, ApiClient.API_KEY)
                     .map { WeatherMapper.transform(it) }

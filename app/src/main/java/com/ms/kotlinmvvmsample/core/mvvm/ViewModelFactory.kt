@@ -1,4 +1,4 @@
-package com.ms.kotlinmvvmsample
+package com.ms.kotlinmvvmsample.core.mvvm
 
 import android.annotation.SuppressLint
 import android.app.Application
@@ -7,7 +7,7 @@ import android.arch.lifecycle.ViewModelProvider
 import android.support.annotation.VisibleForTesting
 import com.ms.kotlinmvvmsample.data.base.WeatherDatabase
 import com.ms.kotlinmvvmsample.data.source.WeatherRepository
-import com.ms.kotlinmvvmsample.data.source.local.WeatherLocalDataSource
+import com.ms.kotlinmvvmsample.data.source.local.WeatherCacheManager
 import com.ms.kotlinmvvmsample.data.source.remote.WeatherRemoteDataSource
 import com.ms.kotlinmvvmsample.home.HomeViewModel
 
@@ -43,7 +43,7 @@ class ViewModelFactory private constructor(
                     INSTANCE ?: ViewModelFactory(
                             application,
                             WeatherRepository.getInstance(WeatherRemoteDataSource(),
-                                    WeatherLocalDataSource(WeatherDatabase.getInstance(application)!!.weatherDao()))
+                                    WeatherCacheManager(WeatherDatabase.getInstance(application)!!.weatherDao()))
                     ).also { INSTANCE = it }
                 }
 
