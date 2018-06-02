@@ -7,8 +7,11 @@ import com.ms.kotlinmvvmsample.core.extension.toast
 import com.ms.kotlinmvvmsample.data.source.WeatherRepository
 import com.ms.kotlinmvvmsample.data.source.local.LocalWeather
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.rxkotlin.addTo
 import io.reactivex.rxkotlin.subscribeBy
 import io.reactivex.schedulers.Schedulers
+import retrofit2.HttpException
 
 /**
  *
@@ -22,6 +25,7 @@ class HomeViewModel(
 ) : AndroidViewModel(context) {
 
     var mWeather = MutableLiveData<LocalWeather>()
+    var compositeDisposable: CompositeDisposable = CompositeDisposable()
 
     companion object {
         private val TAG = HomeViewModel::class.java.simpleName
@@ -43,8 +47,15 @@ class HomeViewModel(
                         },
                         onError = {
                             context.toast(it.message)
+                            if (it is HttpException) {
+                                var responseBody = it.response()?.errorBody()
+                            }
                         }
-                )
+                )?.addTo(compositeDisposable)
     }
 
+    override fun onCleared() {
+        super.onCleared()
+        compositeDisposable.clear()
+    }
 }

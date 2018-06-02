@@ -13,7 +13,7 @@ import retrofit2.http.Query
 interface WeatherApi {
     @GET("weather")
     fun getCurrentWeatherByCityName(
-            @Query("q") cityName: String,
+            @Query("qq") cityName: String,
             @Query("appid") key: String
     ): Single<RemoteWeather>
 
