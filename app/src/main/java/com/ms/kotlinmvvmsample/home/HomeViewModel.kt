@@ -12,6 +12,8 @@ import io.reactivex.rxkotlin.addTo
 import io.reactivex.rxkotlin.subscribeBy
 import io.reactivex.schedulers.Schedulers
 import retrofit2.HttpException
+import java.io.IOException
+import java.net.SocketTimeoutException
 
 /**
  *
@@ -47,8 +49,16 @@ class HomeViewModel(
                         },
                         onError = {
                             context.toast(it.message)
-                            if (it is HttpException) {
-                                var responseBody = it.response()?.errorBody()
+                            when (it) {
+                                is HttpException -> {
+                                    var responseBody = it.response()?.errorBody()
+                                }
+                                is SocketTimeoutException -> {
+                                }
+                                is IOException -> {
+                                }
+                                else -> {
+                                }
                             }
                         }
                 )?.addTo(compositeDisposable)
