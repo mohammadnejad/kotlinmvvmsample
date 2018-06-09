@@ -3,17 +3,15 @@ package com.ms.kotlinmvvmsample.home
 import android.app.Application
 import android.arch.lifecycle.AndroidViewModel
 import android.arch.lifecycle.MutableLiveData
-import com.ms.kotlinmvvmsample.core.extension.toast
+import com.ms.kotlinmvvmsample.core.extension.showNetworkError
 import com.ms.kotlinmvvmsample.data.source.WeatherRepository
+import com.ms.kotlinmvvmsample.data.source.local.LocalForecast
 import com.ms.kotlinmvvmsample.data.source.local.LocalWeather
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.addTo
 import io.reactivex.rxkotlin.subscribeBy
 import io.reactivex.schedulers.Schedulers
-import retrofit2.HttpException
-import java.io.IOException
-import java.net.SocketTimeoutException
 
 /**
  *
@@ -27,7 +25,8 @@ class HomeViewModel(
 ) : AndroidViewModel(context) {
 
     var mWeather = MutableLiveData<LocalWeather>()
-    var compositeDisposable: CompositeDisposable = CompositeDisposable()
+    var mForecast = MutableLiveData<List<LocalForecast>>()
+    private var compositeDisposable: CompositeDisposable = CompositeDisposable()
 
     companion object {
         private val TAG = HomeViewModel::class.java.simpleName
@@ -36,6 +35,12 @@ class HomeViewModel(
     fun getCurrentWeather(cityName: String) {
         if (mWeather.value == null) {
             loadCurrentWeather(cityName)
+        }
+    }
+
+    fun getForecast(cityName: String) {
+        if (mForecast.value == null) {
+            loadForecast(cityName)
         }
     }
 
@@ -48,18 +53,21 @@ class HomeViewModel(
                             mWeather.value = it
                         },
                         onError = {
-                            context.toast(it.message)
-                            when (it) {
-                                is HttpException -> {
-                                    var responseBody = it.response()?.errorBody()
-                                }
-                                is SocketTimeoutException -> {
-                                }
-                                is IOException -> {
-                                }
-                                else -> {
-                                }
-                            }
+                            context.showNetworkError(it)
+                        }
+                )?.addTo(compositeDisposable)
+    }
+
+    private fun loadForecast(cityName: String) {
+        weatherRepository.getForecast(cityName)
+                ?.subscribeOn(Schedulers.io())
+                ?.observeOn(AndroidSchedulers.mainThread())
+                ?.subscribeBy(
+                        onSuccess = {
+                            mForecast.value = it
+                        },
+                        onError = {
+                            context.showNetworkError(it)
                         }
                 )?.addTo(compositeDisposable)
     }

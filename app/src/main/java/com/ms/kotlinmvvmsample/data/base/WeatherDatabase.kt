@@ -4,6 +4,7 @@ import android.arch.persistence.room.Database
 import android.arch.persistence.room.Room
 import android.arch.persistence.room.RoomDatabase
 import android.content.Context
+import com.ms.kotlinmvvmsample.data.source.local.LocalForecast
 import com.ms.kotlinmvvmsample.data.source.local.LocalWeather
 import com.ms.kotlinmvvmsample.data.source.local.WeatherDao
 
@@ -14,7 +15,7 @@ import com.ms.kotlinmvvmsample.data.source.local.WeatherDao
  * @since 5/6/18
  */
 
-@Database(entities = [(LocalWeather::class)], version = 1)
+@Database(entities = [(LocalWeather::class), (LocalForecast::class)], version = 1)
 abstract class WeatherDatabase : RoomDatabase() {
 
     abstract fun weatherDao(): WeatherDao

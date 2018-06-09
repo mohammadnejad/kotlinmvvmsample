@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import com.ms.kotlinmvvmsample.BaseFragment
 import com.ms.kotlinmvvmsample.R
 import com.ms.kotlinmvvmsample.core.extension.obtainViewModel
+import com.ms.kotlinmvvmsample.core.extension.toast
 import kotlinx.android.synthetic.main.fragment_home.*
 
 class HomeFragment : BaseFragment() {
@@ -37,6 +38,7 @@ class HomeFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         homeViewModel.getCurrentWeather("London")
+        homeViewModel.getForecast("London")
     }
 
     override fun subscribeViews() {
@@ -47,6 +49,10 @@ class HomeFragment : BaseFragment() {
             windFlowTextView.text = it?.wind?.deg?.toInt().toString()
             preceptionTextView.text = it?.main?.pressure?.toString()
             humidityTextView.text = it?.main?.humidity?.toString()
+        })
+
+        homeViewModel.mForecast.observe(this, Observer {
+            context?.toast(it?.get(0)?.city)
         })
     }
 

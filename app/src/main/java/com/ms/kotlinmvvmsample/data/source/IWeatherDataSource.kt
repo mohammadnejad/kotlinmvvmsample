@@ -10,11 +10,11 @@ import io.reactivex.Single
  * @version 1.0
  * @since 4/16/18
  */
-interface WeatherDataSource {
+interface IWeatherDataSource {
 
     fun getCurrentWeatherByCityName(cityName: String): Single<LocalWeather>?
 
-    fun getForecast(cityName: String): Single<LocalForecast>?
+    fun getForecast(cityName: String): Single<List<LocalForecast>>?
 
     fun getAll(): Single<List<LocalWeather>>?
 }

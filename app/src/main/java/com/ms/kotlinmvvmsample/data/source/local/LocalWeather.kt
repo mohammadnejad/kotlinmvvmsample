@@ -21,7 +21,6 @@ data class LocalWeather(
         val id: Long,
 
         val name: String,
-
         val code: Int,
         val dt: Long,
         val base: String?,

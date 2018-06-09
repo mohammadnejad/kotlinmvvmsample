@@ -15,8 +15,8 @@ import io.reactivex.Single
  * @since 4/16/18
  */
 class WeatherRepository(
-        private val weatherRemoteDataSource: WeatherDataSource,
-        private val weatherCacheManager: IWeatherCacheManager) : WeatherDataSource {
+        private val weatherRemoteDataSource: IWeatherDataSource,
+        private val weatherCacheManager: IWeatherCacheManager) : IWeatherDataSource {
 
     override fun getCurrentWeatherByCityName(cityName: String): Single<LocalWeather>? {
         return if (WeatherApplication.mContext.isNetworkAvailable()) {
@@ -31,7 +31,7 @@ class WeatherRepository(
         }
     }
 
-    override fun getForecast(cityName: String): Single<LocalForecast>? {
+    override fun getForecast(cityName: String): Single<List<LocalForecast>>? {
         return if (WeatherApplication.mContext.isNetworkAvailable()) {
             weatherRemoteDataSource.getForecast(cityName)
                     ?.doAfterSuccess {
@@ -51,9 +51,9 @@ class WeatherRepository(
 
         @JvmStatic
         fun getInstance(
-                weatherRemoteDataSource: WeatherDataSource,
+                weatherRemoteDataSource: IWeatherDataSource,
                 cacheManager: IWeatherCacheManager) =
-                INSTANCE ?: synchronized(WeatherDataSource::class.java) {
+                INSTANCE ?: synchronized(IWeatherDataSource::class.java) {
                     INSTANCE ?: WeatherRepository(weatherRemoteDataSource, cacheManager)
                             .also { INSTANCE = it }
                 }

@@ -1,6 +1,6 @@
 package com.ms.kotlinmvvmsample.data.source.local
 
-import com.ms.kotlinmvvmsample.data.source.WeatherDataSource
+import com.ms.kotlinmvvmsample.data.source.IWeatherDataSource
 
 /**
  *
@@ -8,9 +8,9 @@ import com.ms.kotlinmvvmsample.data.source.WeatherDataSource
  * @version 1.0
  * @since 6/1/18
  */
-interface IWeatherCacheManager : WeatherDataSource {
+interface IWeatherCacheManager : IWeatherDataSource {
 
     fun insertCurrentWeather(localWeather: LocalWeather)
 
-    fun insertForecast(forecast: LocalForecast)
+    fun insertForecast(forecasts: List<LocalForecast>)
 }

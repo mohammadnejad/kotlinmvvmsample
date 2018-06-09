@@ -1,7 +1,7 @@
 package com.ms.kotlinmvvmsample.data.source.remote
 
 import com.ms.kotlinmvvmsample.data.base.ApiClient
-import com.ms.kotlinmvvmsample.data.source.WeatherDataSource
+import com.ms.kotlinmvvmsample.data.source.IWeatherDataSource
 import com.ms.kotlinmvvmsample.data.source.local.LocalForecast
 import com.ms.kotlinmvvmsample.data.source.local.LocalWeather
 import com.ms.kotlinmvvmsample.data.source.mapper.ForecastMapper
@@ -14,7 +14,7 @@ import io.reactivex.Single
  * @version 1.0
  * @since 4/16/18
  */
-class WeatherRemoteDataSource : WeatherDataSource {
+class WeatherRemoteDataSource : IWeatherDataSource {
 
     private val weatherApi: WeatherApi by lazy {
         ApiClient.getRetrofitInstance().create(WeatherApi::class.java)
@@ -24,7 +24,7 @@ class WeatherRemoteDataSource : WeatherDataSource {
             weatherApi.getCurrentWeatherByCityName(cityName, ApiClient.API_KEY)
                     .map { WeatherMapper.transform(it) }
 
-    override fun getForecast(cityName: String): Single<LocalForecast>? =
+    override fun getForecast(cityName: String): Single<List<LocalForecast>>? =
             weatherApi.getForecast(cityName, ApiClient.API_KEY)
                     .map { ForecastMapper.transform(it) }
 

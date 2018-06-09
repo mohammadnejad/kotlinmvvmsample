@@ -1,7 +1,5 @@
 package com.ms.kotlinmvvmsample.data.source.local
 
-import com.ms.kotlinmvvmsample.data.source.WeatherDataSource
-import com.ms.kotlinmvvmsample.data.source.remote.Forecast
 import io.reactivex.Single
 
 /**
@@ -16,7 +14,8 @@ class WeatherCacheManager(private val weatherDao: WeatherDao) : IWeatherCacheMan
         weatherDao.insert(localWeather)
     }
 
-    override fun insertForecast(forecast: LocalForecast) {
+    override fun insertForecast(forecasts: List<LocalForecast>) {
+        weatherDao.insertForecast(forecasts)
     }
 
     override fun getCurrentWeatherByCityName(cityName: String): Single<LocalWeather>? {
@@ -26,8 +25,8 @@ class WeatherCacheManager(private val weatherDao: WeatherDao) : IWeatherCacheMan
                 }
     }
 
-    override fun getForecast(cityName: String): Single<LocalForecast>? {
-        return null
+    override fun getForecast(cityName: String): Single<List<LocalForecast>>? {
+        return weatherDao.getForecast(cityName)
     }
 
     override fun getAll(): Single<List<LocalWeather>>? {
