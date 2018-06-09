@@ -17,10 +17,16 @@ import io.reactivex.Single
 interface WeatherDao {
 
     @Insert(onConflict = REPLACE)
-    fun insert(weather: LocalWeather)
+    fun insertWeather(weather: LocalWeather)
 
     @Insert(onConflict = REPLACE)
     fun insertForecast(forecasts: List<LocalForecast>)
+
+    @Query("delete from LocalWeather")
+    fun deleteWeather()
+
+    @Query("delete from LocalForecast")
+    fun deleteForecast()
 
     @Query("select * from LocalWeather where name = :cityName")
     fun getCurrentWeatherByCityName(cityName: String): Single<List<LocalWeather>>

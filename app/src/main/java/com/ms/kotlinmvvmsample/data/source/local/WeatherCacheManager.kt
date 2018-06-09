@@ -11,10 +11,12 @@ import io.reactivex.Single
 class WeatherCacheManager(private val weatherDao: WeatherDao) : IWeatherCacheManager {
 
     override fun insertCurrentWeather(localWeather: LocalWeather) {
-        weatherDao.insert(localWeather)
+        weatherDao.deleteWeather()
+        weatherDao.insertWeather(localWeather)
     }
 
     override fun insertForecast(forecasts: List<LocalForecast>) {
+        weatherDao.deleteForecast()
         weatherDao.insertForecast(forecasts)
     }
 

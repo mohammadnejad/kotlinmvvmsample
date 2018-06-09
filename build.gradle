@@ -27,11 +27,11 @@ ext {
     roomRxVersion = '1.1.0'
 
     // Release
-    releaseApiUrl = "http://samples.openweathermap.org/data/2.5/"
+    releaseApiUrl = "http://api.openweathermap.org/data/2.5/"
     releaseApiKey = "8d95c13c65eb2a239ea2dc997ca9d3e0"
 
     // Debug
-    debugApiUrl = "http://samples.openweathermap.org/data/2.5/"
+    debugApiUrl = "http://api.openweathermap.org/data/2.5/"
     debugApiKey = "8d95c13c65eb2a239ea2dc997ca9d3e0"
 }
 

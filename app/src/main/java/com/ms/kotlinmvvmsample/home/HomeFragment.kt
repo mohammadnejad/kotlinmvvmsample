@@ -7,8 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import com.ms.kotlinmvvmsample.BaseFragment
 import com.ms.kotlinmvvmsample.R
+import com.ms.kotlinmvvmsample.core.extension.convertKelvinToCelsius
+import com.ms.kotlinmvvmsample.core.extension.getHourFromMillisecond
 import com.ms.kotlinmvvmsample.core.extension.obtainViewModel
-import com.ms.kotlinmvvmsample.core.extension.toast
 import kotlinx.android.synthetic.main.fragment_home.*
 
 class HomeFragment : BaseFragment() {
@@ -37,22 +38,39 @@ class HomeFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        homeViewModel.getCurrentWeather("London")
-        homeViewModel.getForecast("London")
+        homeViewModel.getCurrentWeather("Tehran")
+        homeViewModel.getForecast("Tehran")
     }
 
     override fun subscribeViews() {
         // add to view model observer
         homeViewModel.mWeather.observe(this, Observer {
             cityNameTextView.text = String.format(resources.getString(R.string.city_name), it?.name, it?.sys?.country).toUpperCase()
-            degreeTextView.text = String.format(resources.getString(R.string.degree_text), it?.main?.temp?.toInt().toString())
+            degreeTextView.text = String.format(resources.getString(R.string.degree_text), convertKelvinToCelsius(it?.main?.temp?.toDouble()).toInt().toString())
             windFlowTextView.text = it?.wind?.deg?.toInt().toString()
             preceptionTextView.text = it?.main?.pressure?.toString()
             humidityTextView.text = it?.main?.humidity?.toString()
         })
 
         homeViewModel.mForecast.observe(this, Observer {
-            context?.toast(it?.get(0)?.city)
+            it?.apply {
+                if (it.size >= 5) {
+                    time1TextView.text = getHourFromMillisecond(it[0].dt * 1000)
+                    time1StatusTextView.text = it[0].main
+
+                    time2TextView.text = getHourFromMillisecond(it[1].dt * 1000)
+                    time2StatusTextView.text = it[1].main
+
+                    time3TextView.text = getHourFromMillisecond(it[2].dt * 1000)
+                    time3StatusTextView.text = it[2].main
+
+                    time4TextView.text = getHourFromMillisecond(it[3].dt * 1000)
+                    time4StatusTextView.text = it[3].main
+
+                    time5TextView.text = getHourFromMillisecond(it[4].dt * 1000)
+                    time5StatusTextView.text = it[4].main
+                }
+            }
         })
     }
 
