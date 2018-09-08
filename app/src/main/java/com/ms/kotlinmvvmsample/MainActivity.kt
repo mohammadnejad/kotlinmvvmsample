@@ -48,6 +48,10 @@ class MainActivity : AppCompatActivity(), IFragmentCallBack, OnSelectedItemChang
     private fun setupBottomNavigation() {
         bottomNavigation.setOnSelectedItemChangeListener(this)
 
+        floatingActionButton.setOnClickListener {
+            bottomNavigation.onTabItemClick(1)
+        }
+
         tabHome.itemPosition = TAB_HOME_POSITION
         tabSetting.itemPosition = TAB_SETTING_POSITION
         tabLocation.itemPosition = TAB_LOCATION_POSITION
