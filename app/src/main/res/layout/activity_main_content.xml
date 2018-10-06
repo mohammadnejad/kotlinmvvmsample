@@ -11,17 +11,6 @@
         android:layout_height="match_parent"
         android:layout_above="@+id/bottomNavigation" />
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/floatingActionButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="24dp"
-        android:clickable="true"
-        app:elevation="8dp"
-        app:srcCompat="@android:drawable/ic_input_add" />
-
     <com.ms.kotlinmvvmsample.view.bottomnavigation.BottomNavigation
         android:id="@+id/bottomNavigation"
         android:layout_width="match_parent"
@@ -42,6 +31,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:icon="@drawable/ic_location_on_24dp"
             app:tab_text="@string/bottom_navigation_tab_location" />
 
         <com.ms.kotlinmvvmsample.view.bottomnavigation.TabItem
