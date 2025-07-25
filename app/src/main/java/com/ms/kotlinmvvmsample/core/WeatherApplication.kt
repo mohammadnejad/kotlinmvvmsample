@@ -18,6 +18,7 @@ class WeatherApplication : Application() {
     }
 
     companion object {
-        var mContext: Context = WeatherApplication.mContext
+        lateinit var mContext: Context
+            private set
     }
 }
